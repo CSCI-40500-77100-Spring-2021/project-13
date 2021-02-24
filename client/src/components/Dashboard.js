@@ -2,8 +2,10 @@ import { Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 import './Dashboard.css';
+import './Util.css'
+import TodoList from './TodoList';
 
-const Home = () => {
+const Dashboard = () => {
   return (
     <div className="container">
       <header className="header">
@@ -12,8 +14,10 @@ const Home = () => {
           <Button className="btn-lg btn-dark">Sign Out</Button>
         </Link>
       </header>
+
+      <TodoList />
     </div>
   );
 };
 
-export default Home;
+export default Dashboard;

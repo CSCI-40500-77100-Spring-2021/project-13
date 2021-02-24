@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const SignUpForm = () => {
   return (
     <div>
-      <Form className="login-form">
+      <Form>
         <FormGroup>
           <Label for="exampleName">Name</Label>
           <Input
