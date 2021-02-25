@@ -12,3 +12,6 @@
 #### 2. npm run start ####
 #### 3. go to localhost:3000 ####
 
+
+![Image of Prototype Preview](https://github.com/CSCI-40500-77100-Spring-2021/project-13/blob/prototype/imgs/Prototype_Preview_PM.png)
+
