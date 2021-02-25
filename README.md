@@ -10,7 +10,7 @@
 4. To view all components or create a new one, cd into `src/components` folder. 
 5. Finally, run `npm start` to start the development server. 
 
-## How myDay team expect the app to look like in the future:
+## App expectation (rough draft):
 
 <img src="./images/myday.png">
 
