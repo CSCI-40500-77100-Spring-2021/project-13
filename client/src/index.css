@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Josefin+Slab&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 * {
   box-sizing: border-box;
@@ -6,7 +6,7 @@
   padding: 0;
 }
 body {
-  font-family: 'Josefin Slab', serif;
+  font-family: 'Roboto', serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
