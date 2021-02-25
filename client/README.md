@@ -1,5 +1,7 @@
 # myDay -- Frontend
 
+## Prototype Live Link : https://myday-prototype.vercel.app/
+
 ## Steps:
 
 1. Download the project or clone it from the terminal.
