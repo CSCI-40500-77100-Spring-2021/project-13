@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import Banner from 'react-js-banner';
 
 import './Dashboard.css';
 import './Util.css';
@@ -139,6 +140,27 @@ const Dashboard = () => {
           <Button className="btn-lg btn-dark">Sign Out</Button>
         </Link>
       </header>
+
+      <Banner
+        title="Add a To-Do or an Event! Few To-Dos and Events are added already as default!"
+        visibleTime={2000}
+      />
+      <Banner
+        title="Click the 'clock' icon to set a Reminder!"
+        visibleTime={4000}
+      />
+      <Banner
+        title="Click the 'check' icon to complete a To-Do or an event!"
+        visibleTime={6000}
+      />
+      <Banner
+        title="Click the 'trash' icon to delete a completed item!"
+        visibleTime={8000}
+      />
+      <Banner
+        title="Please note, few features are not working correclty at the moment! Stay tuned for an update!"
+        visibleTime={10000}
+      />
 
       <TodoList
         todos={todos}

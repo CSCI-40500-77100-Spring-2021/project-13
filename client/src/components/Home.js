@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { TabContent, TabPane, Nav, NavItem, NavLink } from 'reactstrap';
 import classnames from 'classnames';
+import Banner from 'react-js-banner';
 
 import SignUpForm from './SignUpForm';
 import SignInForm from './SignInForm';
@@ -14,6 +15,10 @@ const Home = () => {
 
   return (
     <div className="container">
+       <Banner
+        title="No email needed, click 'SIGN IN'"
+        visibleTime={2000}
+      />
       <div className="card-container">
         <h3 className="text-center">
           Welcome to <span className="font-weight-bold">myDay</span>

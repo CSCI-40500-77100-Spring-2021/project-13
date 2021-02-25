@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Nav, NavItem, NavLink, TabContent, TabPane } from 'reactstrap';
 import classnames from 'classnames';
-import Banner from 'react-js-banner';
 
 import Todos from './Todo/Todos';
 import Events from './Event/Events';
@@ -31,23 +30,6 @@ const TodoList = ({
 
   return (
     <div className="card-container">
-      <Banner title="Add a To-Do or an Event! Few To-Dos and Events are added already as default!" visibleTime={3000} />
-      <Banner
-        title="Click the 'clock' icon to set a Reminder!"
-        visibleTime={6000}
-      />
-      <Banner
-        title="Click the 'check' icon to complete a To-Do or an event!"
-        visibleTime={9000}
-      />
-      <Banner
-        title="Click the 'trash' icon to delete a completed item!"
-        visibleTime={12000}
-      />
-      <Banner
-        title="Please note, few features are not working correclty at the moment! Stay tuned for an update!"
-        visibleTime={15000}
-      />
       <Nav tabs>
         <NavItem>
           <NavLink
