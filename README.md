@@ -1,5 +1,9 @@
 # Project-13 (myDay)
 
+## Idea:
+
+The idea behind this app is to give the user full power to control their productivity dashboard. The user can add To-Dos, Events, have a personal journal to write down thier amazing ideas or thoughts, stay updated with the important current events etc. 
+
 ## Prototype Live Link : https://myday-prototype.vercel.app/
 
 ## Steps:
