@@ -12,6 +12,9 @@
 #### 2. npm run start ####
 #### 3. go to localhost:3000 ####
 
+## Prototype
+For our Dashboard Web Application, we were able to demonstrate the login feature we wish to implement and a blank dashboard. 
+This is a preview example of how we would like a user to have their myDay setup.
 
 ![Image of Prototype Preview](https://github.com/CSCI-40500-77100-Spring-2021/project-13/blob/prototype/imgs/Prototype_Preview_PM.png)
 
