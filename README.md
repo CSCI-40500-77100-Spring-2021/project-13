@@ -12,7 +12,7 @@
 
 ## How myDay expected to look like: 
 
-![](./images/myDay.png)
+![](images/myDay.png)
 
 ## Team Info:
 
