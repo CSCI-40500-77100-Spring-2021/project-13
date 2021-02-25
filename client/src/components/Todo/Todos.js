@@ -29,7 +29,7 @@ const Todos = ({ todos, onAddTodo, onTodoReminder, onDoneTodo }) => {
             onChange={handleChnage}
           />
         </FormGroup>
-        <Button className="btn-lg btn-dark btn-block">Add</Button>
+        <Button className="btn-lg btn-dark btn-block" style={{marginTop: "2"}}>Add</Button>
         <div>
           {todos.map((todo) => {
             return (
