@@ -133,49 +133,52 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="container">
-      <header className="header">
-        <h2 className="brand">myDay</h2>
-        <Link to="/">
-          <Button className="btn-lg btn-dark">Sign Out</Button>
-        </Link>
-      </header>
+    <div className="background-c pb-5">
+      <div className="container">
+        <header className="header">
+          <h2 className="brand">myDay</h2>
+          <h2 className="brand">Good Afternoon</h2>
+          <Link to="/">
+            <Button className="btn-lg btn-dark">Sign Out</Button>
+          </Link>
+        </header>
 
-      <Banner
-        title="Add a To-Do or an Event! Few To-Dos and Events are added already as default!"
-        visibleTime={2000}
-      />
-      <Banner
-        title="Click the 'clock' icon to set a Reminder!"
-        visibleTime={4000}
-      />
-      <Banner
-        title="Click the 'check' icon to complete a To-Do or an event!"
-        visibleTime={6000}
-      />
-      <Banner
-        title="Click the 'trash' icon to delete a completed item!"
-        visibleTime={8000}
-      />
-      <Banner
-        title="Please note, few features are not working correclty at the moment! Stay tuned for an update!"
-        visibleTime={10000}
-      />
+        <Banner
+          title="Add a To-Do or an Event! Few To-Dos and Events are added already as default!"
+          visibleTime={2000}
+        />
+        <Banner
+          title="Click the 'clock' icon to set a Reminder!"
+          visibleTime={4000}
+        />
+        <Banner
+          title="Click the 'check' icon to complete a To-Do or an event!"
+          visibleTime={6000}
+        />
+        <Banner
+          title="Click the 'trash' icon to delete a completed item!"
+          visibleTime={8000}
+        />
+        <Banner
+          title="Please note, few features are not working correclty at the moment! Stay tuned for an update!"
+          visibleTime={10000}
+        />
 
-      <TodoList
-        todos={todos}
-        onAddTodo={addTodo}
-        events={events}
-        onAddEvent={addEvent}
-        onDoneTodo={doneTodo}
-        onDoneEvent={doneEvent}
-        reminders={reminders}
-        onTodoReminder={addTodoReminder}
-        onEventReminder={addEventReminder}
-        onDoneReminder={doneReminder}
-        completedItems={completedItems}
-        onDeleteCompletedItem={deleteCompletedItem}
-      />
+        <TodoList
+          todos={todos}
+          onAddTodo={addTodo}
+          events={events}
+          onAddEvent={addEvent}
+          onDoneTodo={doneTodo}
+          onDoneEvent={doneEvent}
+          reminders={reminders}
+          onTodoReminder={addTodoReminder}
+          onEventReminder={addEventReminder}
+          onDoneReminder={doneReminder}
+          completedItems={completedItems}
+          onDeleteCompletedItem={deleteCompletedItem}
+        />
+      </div>
     </div>
   );
 };
