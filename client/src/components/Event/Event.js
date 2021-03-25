@@ -1,5 +1,4 @@
 import { FaCheck, FaClock } from 'react-icons/fa';
-import '../Util.css';
 
 const Event = ({ event, onDoneEvent, onEventReminder }) => {
   return (

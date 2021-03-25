@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
 
 import Todo from './Todo';
@@ -19,7 +19,7 @@ const Todos = ({ todos, onAddTodo, onTodoReminder, onDoneTodo }) => {
     <div>
       <Form onSubmit={handleAddTodo}>
         <FormGroup className="todo-form">
-          <Label for="exampleTodo">Add To-Do</Label>
+          <Label for="exampleTodo" className="subtitle pt-2">Add To-Do</Label>
           <Input
             type="todo"
             name="todo"
@@ -33,11 +33,13 @@ const Todos = ({ todos, onAddTodo, onTodoReminder, onDoneTodo }) => {
         <div>
           {todos.map((todo) => {
             return (
-              <Todo
-                todo={todo}
-                onTodoReminder={onTodoReminder}
-                onDoneTodo={onDoneTodo}
-              />
+              <React.Fragment key={todo.id}>
+                <Todo
+                  todo={todo}
+                  onTodoReminder={onTodoReminder}
+                  onDoneTodo={onDoneTodo}
+                />
+              </React.Fragment>
             );
           })}
         </div>

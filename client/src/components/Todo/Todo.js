@@ -1,5 +1,4 @@
 import { FaCheck, FaClock } from 'react-icons/fa';
-import '../Util.css';
 
 const Todo = ({ todo, onDoneTodo, onTodoReminder }) => {
   return (

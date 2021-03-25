@@ -5,7 +5,8 @@ import Banner from 'react-js-banner';
 
 import SignUpForm from './SignUpForm';
 import SignInForm from './SignInForm';
-import './Home.css';
+
+import './_Style.css';
 
 const Home = () => {
   const [activeTab, setActiveTab] = useState('1');
@@ -15,19 +16,13 @@ const Home = () => {
   };
 
   return (
-    <div className="backdrop">
+    <div className="background-home">
       <div className="container">
-        <header className="header">
-          <h2 className="brand">myDay</h2>
-        </header>
-        <Banner
-          title="No email needed, click 'SIGN IN'"
-          visibleTime={2000}
-        />
-        <div className="card-container">
-          <h3 className="text-center title">
-            Welcome to <span className="font-weight-bold">myDay</span>
+        <Banner title="No email needed, click 'SIGN IN'" visibleTime={2000} />
+        <h3 className="text-center greeting pt-4">
+            Welcome to <span className="font-weight-bold border-bottom border-white">myDay</span>
           </h3>
+        <div className="card-container">
           <Nav tabs>
             <NavItem>
               <NavLink
@@ -37,7 +32,7 @@ const Home = () => {
                 }}
               >
                 Sign In
-            </NavLink>
+              </NavLink>
             </NavItem>
             <NavItem>
               <NavLink
@@ -47,7 +42,7 @@ const Home = () => {
                 }}
               >
                 Sign Up
-            </NavLink>
+              </NavLink>
             </NavItem>
           </Nav>
           <TabContent activeTab={activeTab}>

@@ -1,11 +1,12 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
 import DatePicker from 'react-datepicker';
+import moment from 'moment';
 
 import Event from './Event';
 import 'react-datepicker/dist/react-datepicker.css';
 
-const Tasks = ({ events, onAddEvent, onEventReminder, onDoneEvent }) => {
+const Events = ({ events, onAddEvent, onEventReminder, onDoneEvent }) => {
   const [userInput, setUserInput] = useState('');
   const [date, setDate] = useState(new Date());
 
@@ -15,15 +16,18 @@ const Tasks = ({ events, onAddEvent, onEventReminder, onDoneEvent }) => {
 
   const handleAddEvent = (e) => {
     e.preventDefault();
-    onAddEvent(userInput);
+    onAddEvent(userInput, moment(date).format('llll'));
     setUserInput('');
+    setDate(new Date());
   };
 
   return (
     <div>
       <Form onSubmit={handleAddEvent}>
         <FormGroup>
-          <Label for="exampleTodo">Add Event</Label>
+          <Label for="exampleTodo" className="subtitle pt-2">
+            Add Event
+          </Label>
           <Input
             type="todo"
             name="todo"
@@ -35,22 +39,27 @@ const Tasks = ({ events, onAddEvent, onEventReminder, onDoneEvent }) => {
           />
         </FormGroup>
         <FormGroup>
-          <DatePicker
-            selected={date}
-            onChange={(date) => setDate(date)}
-            dateFormat="P @ p"
-            showTimeSelect
-          />
+          <div style={{textAlign: 'center'}}>
+            <DatePicker
+              className="date-picker"
+              selected={date}
+              onChange={(date) => setDate(date)}
+              dateFormat="P @ p"
+              showTimeSelect
+            />
+          </div>
         </FormGroup>
         <Button className="btn-lg btn-dark btn-block">Add</Button>
         <div>
           {events.map((event) => {
             return (
-              <Event
-                event={event}
-                onEventReminder={onEventReminder}
-                onDoneEvent={onDoneEvent}
-              />
+              <React.Fragment key={event.id}>
+                <Event
+                  event={event}
+                  onEventReminder={onEventReminder}
+                  onDoneEvent={onDoneEvent}
+                />
+              </React.Fragment>
             );
           })}
         </div>
@@ -59,4 +68,4 @@ const Tasks = ({ events, onAddEvent, onEventReminder, onDoneEvent }) => {
   );
 };
 
-export default Tasks;
+export default Events;

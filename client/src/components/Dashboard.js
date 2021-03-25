@@ -1,44 +1,57 @@
 import { useState } from 'react';
 import { Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import Banner from 'react-js-banner';
+import moment from 'moment';
 
-import './Dashboard.css';
-import './Util.css';
 import TodoList from './TodoList';
 
 const Dashboard = () => {
   const [todos, setTodos] = useState([
     {
       id: 1,
-      text: 'Work on myDay prototype',
+      text: 'Fix event tab',
     },
     {
       id: 2,
-      text: 'Submit the prototype',
+      text: 'Add the journal',
     },
   ]);
 
   const [events, setEvents] = useState([
     {
       id: 1,
-      text: 'Zoom meeting w/ Charles',
-      day: 'Tuesday',
+      text: 'Meeting w/ myDay team',
+      day: 'Tue, Mar 23, 2021 9:45 PM',
     },
     {
       id: 2,
-      text: 'Study chapter 3',
-      day: 'Thursday',
+      text: 'Submit the prototype',
+      day: 'Wed, Mar 24, 2021 11:59 PM',
     },
     {
       id: 3,
-      text: 'myDay team meeting',
-      day: 'Thursday',
-    },
+      text: 'Study for midterm',
+      day: 'Mon, Mar 29, 2021 11:00 AM'
+    }
   ]);
 
   const [reminders, setReminders] = useState('');
   const [completedItems, setCompletedItems] = useState('');
+  const [username, setUsername] = useState("John");
+  const [hour, setHour] = useState(new Date());
+
+  const greet = (hour, username) => {
+    var greet;
+    if (hour < 12)
+      greet = `Good Morning, ${username}`;
+    else if (hour >= 12 && hour < 18)
+      greet = `Good Afternoon, ${username}`;
+    else if (hour >=18 && hour <= 24) {
+      greet = `Good Evening, ${username}`;
+    }
+
+    return greet;
+  }
 
   const addTodo = (userInput) => {
     let prevTodos = [...todos];
@@ -49,14 +62,14 @@ const Dashboard = () => {
     setTodos(prevTodos);
   };
 
-  const addEvent = (userInput) => {
+  const addEvent = (userInput, date) => {
     let prevEvents = [...events];
     prevEvents = [
       ...prevEvents,
       {
         id: events.length + 1,
         text: userInput,
-        day: 'Monday',
+        day: date,
       },
     ];
     setEvents(prevEvents);
@@ -133,36 +146,28 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="background-c pb-5">
+    <div className="background-dashboard">
       <div className="container">
         <header className="header">
           <h2 className="brand">myDay</h2>
-          <h2 className="brand">Good Afternoon</h2>
           <Link to="/">
             <Button className="btn-lg btn-dark">Sign Out</Button>
           </Link>
         </header>
 
-        <Banner
-          title="Add a To-Do or an Event! Few To-Dos and Events are added already as default!"
-          visibleTime={2000}
-        />
-        <Banner
-          title="Click the 'clock' icon to set a Reminder!"
-          visibleTime={4000}
-        />
-        <Banner
-          title="Click the 'check' icon to complete a To-Do or an event!"
-          visibleTime={6000}
-        />
-        <Banner
-          title="Click the 'trash' icon to delete a completed item!"
-          visibleTime={8000}
-        />
-        <Banner
-          title="Please note, few features are not working correclty at the moment! Stay tuned for an update!"
-          visibleTime={10000}
-        />
+        <div className="greeting-container">
+          <h2 className="greeting">{greet(hour.getHours(), username)}</h2>
+          <div className="day-weather">
+            <div className="day-info">
+              <p>{moment(hour).format('dddd')}</p>
+              <p>{moment(hour).format('LL')}</p>
+            </div>
+            <div className="weather-info">
+              <p>52°F</p>
+              <p>Rainy</p>
+            </div>
+          </div>
+        </div>
 
         <TodoList
           todos={todos}
