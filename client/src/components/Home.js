@@ -6,6 +6,8 @@ import Banner from 'react-js-banner';
 import SignUpForm from './SignUpForm';
 import SignInForm from './SignInForm';
 
+import './_Style.css';
+
 const Home = () => {
   const [activeTab, setActiveTab] = useState('1');
 
@@ -14,45 +16,44 @@ const Home = () => {
   };
 
   return (
-    <div className="container">
-       <Banner
-        title="No email needed, click 'SIGN IN'"
-        visibleTime={2000}
-      />
-      <div className="card-container">
-        <h3 className="text-center">
-          Welcome to <span className="font-weight-bold">myDay</span>
-        </h3>
-        <Nav tabs>
-          <NavItem>
-            <NavLink
-              className={classnames({ active: activeTab === '1' })}
-              onClick={() => {
-                toggle('1');
-              }}
-            >
-              Sign In
-            </NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink
-              className={classnames({ active: activeTab === '2' })}
-              onClick={() => {
-                toggle('2');
-              }}
-            >
-              Sign Up
-            </NavLink>
-          </NavItem>
-        </Nav>
-        <TabContent activeTab={activeTab}>
-          <TabPane tabId="1">
-            <SignInForm />
-          </TabPane>
-          <TabPane tabId="2">
-            <SignUpForm />
-          </TabPane>
-        </TabContent>
+    <div className="background-home">
+      <div className="container">
+        <Banner title="No email needed, click 'SIGN IN'" visibleTime={2000} />
+        <h3 className="text-center greeting pt-4">
+            Welcome to <span className="font-weight-bold border-bottom border-white">myDay</span>
+          </h3>
+        <div className="card-container">
+          <Nav tabs>
+            <NavItem>
+              <NavLink
+                className={classnames({ active: activeTab === '1' })}
+                onClick={() => {
+                  toggle('1');
+                }}
+              >
+                Sign In
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink
+                className={classnames({ active: activeTab === '2' })}
+                onClick={() => {
+                  toggle('2');
+                }}
+              >
+                Sign Up
+              </NavLink>
+            </NavItem>
+          </Nav>
+          <TabContent activeTab={activeTab}>
+            <TabPane tabId="1">
+              <SignInForm />
+            </TabPane>
+            <TabPane tabId="2">
+              <SignUpForm />
+            </TabPane>
+          </TabContent>
+        </div>
       </div>
     </div>
   );

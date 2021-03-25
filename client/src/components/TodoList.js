@@ -6,7 +6,6 @@ import Todos from './Todo/Todos';
 import Events from './Event/Events';
 import Reminders from './Reminder/Reminders';
 import CompletedItems from './Completed/CompletedItems';
-import './Util.css';
 
 const TodoList = ({
   todos,

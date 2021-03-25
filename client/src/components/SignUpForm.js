@@ -6,7 +6,7 @@ const SignUpForm = () => {
     <div>
       <Form>
         <FormGroup>
-          <Label for="exampleName">Name</Label>
+          <Label for="exampleName" className="subtitle pt-2">Name</Label>
           <Input
             type="name"
             name="name"
@@ -16,7 +16,7 @@ const SignUpForm = () => {
           />
         </FormGroup>
         <FormGroup>
-          <Label for="exampleEmail">Email</Label>
+          <Label for="exampleEmail" className="subtitle">Email</Label>
           <Input
             type="email"
             name="email"
@@ -25,7 +25,7 @@ const SignUpForm = () => {
           />
         </FormGroup>
         <FormGroup>
-          <Label for="examplePassword">Password</Label>
+          <Label for="examplePassword" className="subtitle">Password</Label>
           <Input
             type="password"
             name="password"
@@ -35,7 +35,7 @@ const SignUpForm = () => {
           />
         </FormGroup>
         <FormGroup>
-          <Label for="examplePassword">Confirm Passowrd</Label>
+          <Label for="examplePassword" className="subtitle">Confirm Passowrd</Label>
           <Input
             type="password"
             name="password"
