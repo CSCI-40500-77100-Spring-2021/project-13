@@ -4,16 +4,16 @@
 
 1. Important qualities: 
 
-    a. Product Lifetime: The purpose of myDay is to let people better organize their day to day lives. And since we are talking about productivity, we doubt that it will ever vanish from this world, hence myDay needs to be updated regularly so the users can use it with confidence and witout having to deal with any issues.  
+    -  Product Lifetime: The purpose of myDay is to let people better organize their day to day lives. And since we are talking about productivity, we doubt that it will ever  vanish from this world, hence myDay needs to be updated regularly so the users can use it with confidence and witout having to deal with any issues.  
 
-    b. Number of Users: Since our target is students, teachers and anyone who deals with productivity online, we think the number of active users will grow quickly hence we need to make our product strong enough to handle the load. 
+    -  Number of Users: Since our target is students, teachers and anyone who deals with productivity online, we think the number of active users will grow quickly hence we need to make our product strong enough to handle the load. 
 
 2. Product Layers: 
 
-    a. Browser-based
-    b. Authentication + user interaction management
-    c. Application-specific functionality
-    d. Database management
+    -  Browser-based
+    -  Authentication + user interaction management
+    -  Application-specific functionality
+    -  Database management
 
 3. Diagram:
 
@@ -21,10 +21,10 @@
 
 4. Technologies:
 
-    a. Database: MongoDB
-    b. Authentication: Google Cloud > Google login > Facebook login > Apple login
-    c. Backend: NodeJS, Express
-    d. Frontend: ReactJS
+    -  Database: MongoDB
+    -  Authentication: Google Cloud > Google login > Facebook login > Apple login
+    -  Backend: NodeJS, Express
+    -  Frontend: ReactJS
 ## Idea:
 
 The idea behind this app is to give the user full power to control their productivity dashboard. The user can add To-Dos, Events, have a personal journal to write down thier amazing ideas or thoughts, stay updated with the important current events etc. 
