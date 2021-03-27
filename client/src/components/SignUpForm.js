@@ -35,7 +35,7 @@ const SignUpForm = () => {
           />
         </FormGroup>
         <FormGroup>
-          <Label for="examplePassword" className="subtitle">Confirm Passowrd</Label>
+          <Label for="examplePassword" className="subtitle">Confirm Password</Label>
           <Input
             type="password"
             name="password"
