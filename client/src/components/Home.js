@@ -6,8 +6,6 @@ import Banner from 'react-js-banner';
 import SignUpForm from './SignUpForm';
 import SignInForm from './SignInForm';
 
-import './_Style.css';
-
 const Home = () => {
   const [activeTab, setActiveTab] = useState('1');
 
