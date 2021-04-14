@@ -28,7 +28,7 @@ const TodoList = ({
   };
 
   return (
-    <div className="card-container">
+    <div className="card-container" style={{ userSelect: 'none'}}>
       <Nav tabs>
         <NavItem>
           <NavLink

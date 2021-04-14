@@ -4,9 +4,10 @@ const CompletedItems = ({ completedItems, onDeleteCompletedItem }) => {
   return (
     <div>
       {completedItems.length > 0
-        ? completedItems.map((completedItem) => {
+        ? completedItems.map((completedItem, index) => {
             return (
-              <CompletedItem
+              <CompletedItem 
+                key={index}
                 completedItem={completedItem}
                 onDeleteCompletedItem={onDeleteCompletedItem}
               />

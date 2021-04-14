@@ -4,9 +4,13 @@ const Reminders = ({ reminders, onDoneReminder }) => {
   return (
     <div>
       {reminders.length > 0
-        ? reminders.map((reminder) => {
+        ? reminders.map((reminder, index) => {
             return (
-              <Reminder reminder={reminder} onDoneReminder={onDoneReminder} />
+              <Reminder
+                key={index}
+                reminder={reminder}
+                onDoneReminder={onDoneReminder}
+              />
             );
           })
         : console.log('')}
