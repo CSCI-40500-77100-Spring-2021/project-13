@@ -3,7 +3,7 @@ import { Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 
-import TodoList from './TodoList/';
+import TodoList from './TodoList/TodoList';
 
 const Dashboard = () => {
   const [todos, setTodos] = useState([
