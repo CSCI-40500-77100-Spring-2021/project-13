@@ -1,5 +1,14 @@
 # Project-13 (myDay)
 
+## Docker
+
+To run this docker container on your terminal, please do the following:
+
+    -  First you need to pull the docker image and to do that type `docker pull rakilzzz/myday`
+    -  Then type `docker images` or `docker image ls` to make sure you see an image named `rakilzzz/myday`
+    -  Once you see and verify the image, you can simply type `docker run -it -p 3000:3000 rakilzzz/myday`
+    -  It will start the development server at port 3000, to view it on your brower go to `http://localhost:3000`
+
 ## Layered Software Architecture
 
 1. Important qualities: 
