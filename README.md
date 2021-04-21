@@ -2,7 +2,7 @@
 
 ## Docker
 
-To run this docker container on your terminal, please do the following:
+To run this docker image on your terminal, please do the following:
 
 1. First you need to pull the docker image and to do that type `docker pull rakilzzz/myday`
 2. Rename the container to myday by typing `docker tag rakilzzz/myday myday`
