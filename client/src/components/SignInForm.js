@@ -1,34 +1,45 @@
-import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
+// import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
+import { Box, TextField, Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 
+import { useStyles } from './Util';
 const SignInForm = () => {
+  const classes = useStyles();
   return (
-    <div>
-      <Form className="login-form">
-        <FormGroup>
-          <Label for="exampleEmail" className="subtitle pt-2">Email</Label>
-          <Input
-            type="email"
-            name="email"
-            id="exampleEmail"
-            placeholder="demo@myday.com"
-          />
-        </FormGroup>
-        <FormGroup>
-          <Label for="examplePassword" className="subtitle">Password</Label>
-          <Input
-            type="password"
-            name="password"
-            id="examplePassword"
-            placeholder="p@$$w0rd"
-            required
-          />
-        </FormGroup>
-        <Link to="/dashboard">
-          <Button className="btn-lg btn-dark btn-block">SIGN IN</Button>
-        </Link>
-      </Form>
-    </div>
+    <>
+      <Box marginTop={2} className={classes.label} autoComplete="off">
+        <TextField
+          id="outlined-basic"
+          fullWidth={true}
+          label="Email"
+          required={true}
+          variant="outlined"
+        />
+      </Box>
+      <Box marginTop={2} className={classes.label} autoComplete="off">
+        <TextField
+          id="outlined-basic"
+          fullWidth={true}
+          label="Password"
+          required={true}
+          variant="outlined"
+        />
+      </Box>
+      <Box align="center" paddingTop={2}>
+        <Button
+          href="/dashboard"
+          variant="contained"
+          size="large"
+          fullWidth={true}
+          style={{
+            background: '#22c1c3',
+            borderRadius: '50px',
+          }}
+        >
+          Sign In
+        </Button>
+      </Box>
+    </>
   );
 };
 

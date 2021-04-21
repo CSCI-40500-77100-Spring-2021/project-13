@@ -1,57 +1,56 @@
 import { useState } from 'react';
-import { TabContent, TabPane, Nav, NavItem, NavLink } from 'reactstrap';
-import classnames from 'classnames';
+import { Box, Typography, Tabs, Tab } from '@material-ui/core';
 import Banner from 'react-js-banner';
 
 import SignUpForm from './SignUpForm';
 import SignInForm from './SignInForm';
+import { TabPanel, a11yProps, useStyles } from './Util';
 
 const Home = () => {
-  const [activeTab, setActiveTab] = useState('1');
+  const classes = useStyles();
+  const [value, setValue] = useState(0);
 
-  const toggle = (tab) => {
-    if (activeTab !== tab) setActiveTab(tab);
+  const toggle = (event, newValue) => {
+    setValue(newValue);
   };
 
   return (
-    <div className="background-home">
-      <div className="container">
-        <Banner title="No email needed, click 'SIGN IN'" visibleTime={2000} />
-        <h3 className="text-center greeting pt-4">
-            Welcome to <span className="font-weight-bold border-bottom border-white">myDay</span>
-          </h3>
-        <div className="card-container">
-          <Nav tabs>
-            <NavItem>
-              <NavLink
-                className={classnames({ active: activeTab === '1' })}
-                onClick={() => {
-                  toggle('1');
-                }}
-              >
-                Sign In
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink
-                className={classnames({ active: activeTab === '2' })}
-                onClick={() => {
-                  toggle('2');
-                }}
-              >
-                Sign Up
-              </NavLink>
-            </NavItem>
-          </Nav>
-          <TabContent activeTab={activeTab}>
-            <TabPane tabId="1">
-              <SignInForm />
-            </TabPane>
-            <TabPane tabId="2">
-              <SignUpForm />
-            </TabPane>
-          </TabContent>
-        </div>
+    <div className="container">
+      <Banner title="No email needed, click 'SIGN IN'" visibleTime={2000} />
+      <Box align="center" paddingTop={2}>
+        <Typography variant="h4">
+          Welcome to{' '}
+          <span style={{ fontWeight: 'bold', borderBottom: '1px solid' }}>
+            myDay
+          </span>
+          ...
+        </Typography>
+      </Box>
+      <div className="login-container">
+        <Tabs
+          style={{
+            background: 'rgb(34,193,195)',
+            background:
+              'linear-gradient(90deg, rgba(34,193,195,1) 0%, rgba(255,174,0,1) 100%)',
+            borderRadius: '50px',
+          }}
+          value={value}
+          onChange={toggle}
+          indicatorColor="primary"
+          textColor="primary"
+          variant="fullWidth"
+          scrollButtons="auto"
+          aria-label="scrollable auto tabs"
+        >
+          <Tab label="Sign In" {...a11yProps(0)} />
+          <Tab label="Sign Up" {...a11yProps(1)} />
+        </Tabs>
+        <TabPanel value={value} index={0}>
+          <SignInForm />
+        </TabPanel>
+        <TabPanel value={value} index={1}>
+          <SignUpForm />
+        </TabPanel>
       </div>
     </div>
   );

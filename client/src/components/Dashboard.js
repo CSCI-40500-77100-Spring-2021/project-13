@@ -1,5 +1,7 @@
-import { useState } from 'react';
-import { Button } from 'reactstrap';
+import { useState, useEffect } from 'react';
+// import { Button } from 'reactstrap';
+
+import {Container, Button} from "@material-ui/core";
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 
@@ -37,10 +39,16 @@ const Dashboard = () => {
 
   const [reminders, setReminders] = useState('');
   const [completedItems, setCompletedItems] = useState('');
-  const [username, setUsername] = useState("John");
-  const [hour, setHour] = useState(new Date());
+  const [username, setUsername] = useState("");
+  const [date] = useState(new Date())
+  const [hour, setHour] = useState(0);
 
-  const greet = (hour, username) => {
+  useEffect(() => {
+    setHour(date.getHours());
+    setUsername("John")
+  });
+
+  const greet = () => {
     var greet;
     if (hour < 12)
       greet = `Good Morning, ${username}`;
@@ -146,21 +154,18 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="background-dashboard">
-      <div className="container">
+      <Container maxWidth="md">
         <header className="header">
-          <h2 className="brand">myDay</h2>
-          <Link to="/">
-            <Button className="btn-lg btn-dark">Sign Out</Button>
-          </Link>
+          <h2 className="brand">myDay</h2>          
+            <Button href="/" variant="contained" color="secondary" style={{borderRadius: "50px"}}>Sign Out</Button>
         </header>
 
         <div className="greeting-container">
-          <h2 className="greeting">{greet(hour.getHours(), username)}</h2>
+          <h2 className="greeting">{greet()}</h2>
           <div className="day-weather">
             <div className="day-info">
-              <p>{moment(hour).format('dddd')}</p>
-              <p>{moment(hour).format('LL')}</p>
+              <p>{moment(date).format('dddd')}</p>
+              <p>{moment(date).format('LL')}</p>
             </div>
             <div className="weather-info">
               <p>52°F</p>
@@ -183,8 +188,7 @@ const Dashboard = () => {
           completedItems={completedItems}
           onDeleteCompletedItem={deleteCompletedItem}
         />
-      </div>
-    </div>
+      </Container>
   );
 };
 

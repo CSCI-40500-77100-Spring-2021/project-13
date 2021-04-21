@@ -9,6 +9,9 @@ body {
   font-family: 'Roboto', serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: url('./imgs/home-background.svg');
+  height: 100vh;
+  background-size: cover;
 }
 
 code {
@@ -16,19 +19,12 @@ code {
     monospace;
 }
 
-li a {
-  color: white;
-}
-
-.background-dashboard {
-  background-image: url('imgs/dashboard.jpg');
-  /* Full height */
-  height: 120vh;
-
-  /* Center and scale the image nicely */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+.login-container {
+  max-width: 23rem;
+  padding: 1rem;
+  margin: 10vh auto;
+  border: 1px solid #000;
+  border-radius: 10px;
 }
 
 .container {
@@ -82,17 +78,6 @@ li a {
   color: white;
 }
 
-.background-home {
-  background-image: url('imgs/home.jpg');
-  /* Full height */
-  height: 100vh;
-
-  /* Center and scale the image nicely */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
 .subtitle {
   color: white;
 }
@@ -102,7 +87,7 @@ li a {
   padding: 15px;
   margin: 10vh auto;
   border: 1px solid white;
-  border-radius: 5px;
+  border-radius: 10px;
 }
 
 .todo-form {
