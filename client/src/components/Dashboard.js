@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react';
-// import { Button } from 'reactstrap';
-
-import {Container, Button} from "@material-ui/core";
+import { useState } from 'react';
+import { Container, Tabs, Tab, Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 
+import Day from './Day';
 import TodoList from './TodoList/TodoList';
+import { TabPanel, a11yProps } from './Util';
 
 const Dashboard = () => {
   const [todos, setTodos] = useState([
@@ -23,89 +23,54 @@ const Dashboard = () => {
     {
       id: 1,
       text: 'Meeting w/ myDay team',
-      day: 'Tue, Mar 23, 2021 9:45 PM',
+      day: 'Tue, Mar 23, 2021',
+      time: '9:45 PM',
     },
     {
       id: 2,
       text: 'Submit the prototype',
-      day: 'Wed, Mar 24, 2021 11:59 PM',
+      day: 'Wed, Mar 24, 2021',
+      time: '10:15 AM',
     },
     {
       id: 3,
       text: 'Study for midterm',
-      day: 'Mon, Mar 29, 2021 11:00 AM'
-    }
+      day: 'Mon, Mar 29, 2021',
+      time: '4:45 PM',
+    },
   ]);
 
   const [reminders, setReminders] = useState('');
   const [completedItems, setCompletedItems] = useState('');
-  const [username, setUsername] = useState("");
-  const [date] = useState(new Date())
-  const [hour, setHour] = useState(0);
+  const [date] = useState(new Date());
+  const [value, setValue] = useState(0);
 
-  useEffect(() => {
-    setHour(date.getHours());
-    setUsername("John")
-  });
-
-  const greet = () => {
-    var greet;
-    if (hour < 12)
-      greet = `Good Morning, ${username}`;
-    else if (hour >= 12 && hour < 18)
-      greet = `Good Afternoon, ${username}`;
-    else if (hour >=18 && hour <= 24) {
-      greet = `Good Evening, ${username}`;
-    }
-
-    return greet;
-  }
+  const toggle = (event, newValue) => {
+    setValue(newValue);
+  };
 
   const addTodo = (userInput) => {
-    let prevTodos = [...todos];
-    prevTodos = [
-      ...prevTodos,
-      { id: todos.length + 1, text: userInput, reminder: false },
-    ];
-    setTodos(prevTodos);
+    if (userInput !== '') {
+      let prevTodos = [...todos];
+      prevTodos = [...prevTodos, { id: todos.length + 1, text: userInput }];
+      setTodos(prevTodos);
+    }
   };
 
-  const addEvent = (userInput, date) => {
-    let prevEvents = [...events];
-    prevEvents = [
-      ...prevEvents,
-      {
-        id: events.length + 1,
-        text: userInput,
-        day: date,
-      },
-    ];
-    setEvents(prevEvents);
-  };
-
-  const addTodoReminder = (item) => {
-    let prevReminders = [...reminders];
-
-    prevReminders = [
-      ...prevReminders,
-      {
-        id: reminders.length + 1,
-        text: item.text,
-      },
-    ];
-    setReminders(prevReminders);
-  };
-
-  const addEventReminder = (item) => {
-    let prevReminders = [...reminders];
-    prevReminders = [
-      ...prevReminders,
-      {
-        id: reminders.length + 1,
-        text: item.text,
-      },
-    ];
-    setReminders(prevReminders);
+  const addEvent = (userInput, day, time) => {
+    if (userInput !== '') {
+      let prevEvents = [...events];
+      prevEvents = [
+        ...prevEvents,
+        {
+          id: events.length + 1,
+          text: userInput,
+          day: day,
+          time: time,
+        },
+      ];
+      setEvents(prevEvents);
+    }
   };
 
   const doneTodo = (item) => {
@@ -134,19 +99,6 @@ const Dashboard = () => {
     setEvents(events.filter((event) => event.id !== item.id));
   };
 
-  const doneReminder = (item) => {
-    let prevCompletedItems = [...completedItems];
-    prevCompletedItems = [
-      ...prevCompletedItems,
-      {
-        id: completedItems.length + 1,
-        text: item.text,
-      },
-    ];
-    setCompletedItems(prevCompletedItems);
-    setReminders(reminders.filter((reminder) => reminder.id !== item.id));
-  };
-
   const deleteCompletedItem = (item) => {
     setCompletedItems(
       completedItems.filter((completedItem) => completedItem.id !== item.id)
@@ -154,26 +106,40 @@ const Dashboard = () => {
   };
 
   return (
-      <Container maxWidth="md">
-        <header className="header">
-          <h2 className="brand">myDay</h2>          
-            <Button href="/" variant="contained" color="secondary" style={{borderRadius: "50px"}}>Sign Out</Button>
-        </header>
+    <Container maxWidth="md">
+      <header className="header">
+        <h2 className="brand">myDay</h2>
+        <Button
+          href="/"
+          variant="contained"
+          style={{ borderRadius: '50px', backgroundColor: '#F88379' }}
+        >
+          Sign Out
+        </Button>
+      </header>
 
-        <div className="greeting-container">
-          <h2 className="greeting">{greet()}</h2>
-          <div className="day-weather">
-            <div className="day-info">
-              <p>{moment(date).format('dddd')}</p>
-              <p>{moment(date).format('LL')}</p>
-            </div>
-            <div className="weather-info">
-              <p>52°F</p>
-              <p>Rainy</p>
-            </div>
-          </div>
-        </div>
-
+      <Tabs
+        style={{
+          background: 'rgb(34,193,195)',
+          borderRadius: '50px',
+          marginTop: '20px',
+        }}
+        value={value}
+        onChange={toggle}
+        indicatorColor="primary"
+        textColor="primary"
+        variant="scrollable"
+        scrollButtons="on"
+        aria-label="scrollable auto tabs"
+      >
+        <Tab label={`${moment(date).format('ll')}`} {...a11yProps(0)} />
+        <Tab label="Tasks" {...a11yProps(1)} />
+        <Tab label="Journal" {...a11yProps(2)} />
+      </Tabs>
+      <TabPanel value={value} index={0}>
+        <Day />
+      </TabPanel>
+      <TabPanel value={value} index={1}>
         <TodoList
           todos={todos}
           onAddTodo={addTodo}
@@ -182,13 +148,11 @@ const Dashboard = () => {
           onDoneTodo={doneTodo}
           onDoneEvent={doneEvent}
           reminders={reminders}
-          onTodoReminder={addTodoReminder}
-          onEventReminder={addEventReminder}
-          onDoneReminder={doneReminder}
           completedItems={completedItems}
           onDeleteCompletedItem={deleteCompletedItem}
         />
-      </Container>
+      </TabPanel>
+    </Container>
   );
 };
 

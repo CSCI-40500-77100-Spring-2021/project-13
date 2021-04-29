@@ -4,10 +4,9 @@ import Banner from 'react-js-banner';
 
 import SignUpForm from './SignUpForm';
 import SignInForm from './SignInForm';
-import { TabPanel, a11yProps, useStyles } from './Util';
+import { TabPanel, a11yProps } from './Util';
 
 const Home = () => {
-  const classes = useStyles();
   const [value, setValue] = useState(0);
 
   const toggle = (event, newValue) => {
@@ -17,16 +16,16 @@ const Home = () => {
   return (
     <div className="container">
       <Banner title="No email needed, click 'SIGN IN'" visibleTime={2000} />
-      <Box align="center" paddingTop={2}>
-        <Typography variant="h4">
-          Welcome to{' '}
-          <span style={{ fontWeight: 'bold', borderBottom: '1px solid' }}>
-            myDay
-          </span>
-          ...
-        </Typography>
-      </Box>
       <div className="login-container">
+        <Box align="center" paddingBottom={2}>
+          <Typography component="span" variant="h5">
+            Welcome to{' '}
+            <span style={{ fontWeight: 'bold', borderBottom: '1px solid' }}>
+              myDay
+            </span>
+            ...
+          </Typography>
+        </Box>
         <Tabs
           style={{
             background: 'rgb(34,193,195)',

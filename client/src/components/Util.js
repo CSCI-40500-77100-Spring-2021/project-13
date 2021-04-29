@@ -19,7 +19,7 @@ export const TabPanel = (props) => {
       aria-labelledby={`scrollable-auto-tab-${index}`}
       {...other}
     >
-      {value === index && <Typography>{children}</Typography>}
+      {value === index && <Typography component="span">{children}</Typography>}
     </div>
   );
 };
@@ -61,7 +61,6 @@ export const useStyles = makeStyles((theme) => ({
       '&.Mui-focused fieldset': {
         borderColor: 'purple',
       },
-    //   color: 'white',
     },
   },
 }));

@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
+import { Box, TextField, Button } from '@material-ui/core';
 
 import Todo from './Todo';
+import { useStyles } from '../../Util';
 
 const Todos = ({ todos, onAddTodo, onTodoReminder, onDoneTodo }) => {
+  const classes = useStyles();
   const [userInput, setUserInput] = useState('');
 
   const handleChnage = (e) => {
@@ -16,35 +18,59 @@ const Todos = ({ todos, onAddTodo, onTodoReminder, onDoneTodo }) => {
     setUserInput('');
   };
   return (
-    <div>
-      <Form onSubmit={handleAddTodo}>
-        <FormGroup className="todo-form">
-          <Label for="exampleTodo" className="subtitle pt-2">Add To-Do</Label>
-          <Input
-            type="todo"
-            name="todo"
-            id="exampleTodo"
-            placeholder="What's on your mind?"
+    <>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+        }}
+      >
+        <Box
+          marginTop={2}
+          className={classes.label}
+          autoComplete="off"
+          style={{ flex: '1' }}
+        >
+          <TextField
+            id="outlined-basic"
+            fullWidth={true}
+            required={true}
+            label="Add A To-Do"
+            variant="outlined"
             value={userInput}
             onChange={handleChnage}
           />
-        </FormGroup>
-        <Button className="btn-lg btn-dark btn-block">Add</Button>
-        <div>
-          {todos.map((todo) => {
-            return (
-              <React.Fragment key={todo.id}>
-                <Todo
-                  todo={todo}
-                  onTodoReminder={onTodoReminder}
-                  onDoneTodo={onDoneTodo}
-                />
-              </React.Fragment>
-            );
-          })}
-        </div>
-      </Form>
-    </div>
+        </Box>
+        <Button
+          type="submit"
+          onClick={handleAddTodo}
+          variant="contained"
+          size="large"
+          style={{
+            marginTop: '20px',
+            marginLeft: '10px',
+            background: '#90c695',
+            borderRadius: '50px',
+          }}
+        >
+          Add
+        </Button>
+      </div>
+      <div>
+        {todos.map((todo) => {
+          return (
+            <React.Fragment key={todo.id}>
+              <Todo
+                todo={todo}
+                onTodoReminder={onTodoReminder}
+                onDoneTodo={onDoneTodo}
+              />
+            </React.Fragment>
+          );
+        })}
+      </div>
+    </>
   );
 };
 

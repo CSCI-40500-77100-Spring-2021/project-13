@@ -6,7 +6,7 @@ const CompletedItems = ({ completedItems, onDeleteCompletedItem }) => {
       {completedItems.length > 0
         ? completedItems.map((completedItem, index) => {
             return (
-              <CompletedItem 
+              <CompletedItem
                 key={index}
                 completedItem={completedItem}
                 onDeleteCompletedItem={onDeleteCompletedItem}
