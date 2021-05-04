@@ -1,11 +1,4 @@
-import {
-  makeStyles,
-  withStyles,
-  Tabs,
-  Tab,
-  Typography,
-  Box,
-} from '@material-ui/core';
+import { makeStyles, Typography } from '@material-ui/core';
 import PropTypes from 'prop-types';
 
 export const TabPanel = (props) => {

@@ -1,25 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
 body {
-  font-family: 'Roboto', serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-image: url('./imgs/home-background.svg');
+  background-image: url('../imgs/home-background.svg');
   height: 100vh;
   background-size: cover;
 }
 
 .login-container {
-  max-width: 23rem;
+  max-width: 25rem;
+  margin: auto;
   padding: 1rem;
-  margin: 50px auto;
-  border: 2px solid #333;
-  border-radius: 10px;
 }
 
 .container {
@@ -74,8 +62,6 @@ body {
   max-width: 35rem;
   padding: 15px;
   margin: 25px auto;
-  border: 1px solid #333;
-  border-radius: 10px;
 }
 
 .todo-form {
@@ -92,11 +78,10 @@ body {
   margin: 10px auto;
   padding: 15px 25px 15px;
   background-color: #362b2b;
-  border-radius: 50px;
+  border-radius: 15px;
 }
 
 .items p {
   font-size: 15px;
   margin: 0;
 }
-

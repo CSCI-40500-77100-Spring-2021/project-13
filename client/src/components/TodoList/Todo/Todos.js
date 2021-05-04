@@ -4,7 +4,7 @@ import { Box, TextField, Button } from '@material-ui/core';
 import Todo from './Todo';
 import { useStyles } from '../../Util';
 
-const Todos = ({ todos, onAddTodo, onTodoReminder, onDoneTodo }) => {
+const Todos = ({ todos, onAddTodo, onDoneTodo, onDeleteItem }) => {
   const classes = useStyles();
   const [userInput, setUserInput] = useState('');
 
@@ -63,8 +63,8 @@ const Todos = ({ todos, onAddTodo, onTodoReminder, onDoneTodo }) => {
             <React.Fragment key={todo.id}>
               <Todo
                 todo={todo}
-                onTodoReminder={onTodoReminder}
                 onDoneTodo={onDoneTodo}
+                onDeleteItem={onDeleteItem}
               />
             </React.Fragment>
           );

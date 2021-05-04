@@ -1,14 +1,15 @@
 import { useState, useEffect } from 'react';
 import moment from 'moment';
 
+import app from '../firebase';
+
 const Day = () => {
-  const [username, setUsername] = useState('');
+  const [username] = useState(app.auth().currentUser.displayName);
   const [date] = useState(new Date());
   const [hour, setHour] = useState(0);
 
   useEffect(() => {
     setHour(date.getHours());
-    setUsername('John');
   }, []);
 
   const greet = () => {

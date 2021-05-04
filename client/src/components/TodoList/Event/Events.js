@@ -1,17 +1,13 @@
 import React, { useState } from 'react';
-// import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
 import { Box, TextField, Button } from '@material-ui/core';
 import { MuiPickersUtilsProvider, DateTimePicker } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
-import DatePicker from 'react-datepicker';
 import moment from 'moment';
 
 import Event from './Event';
-import 'react-datepicker/dist/react-datepicker.css';
-
 import { useStyles } from '../../Util';
 
-const Events = ({ events, onAddEvent, onEventReminder, onDoneEvent }) => {
+const Events = ({ events, onAddEvent, onDoneEvent, onDeleteItem }) => {
   const classes = useStyles();
   const [userInput, setUserInput] = useState('');
   const [date, setDate] = useState(new Date());
@@ -85,8 +81,8 @@ const Events = ({ events, onAddEvent, onEventReminder, onDoneEvent }) => {
             <React.Fragment key={event.id}>
               <Event
                 event={event}
-                onEventReminder={onEventReminder}
                 onDoneEvent={onDoneEvent}
+                onDeleteItem={onDeleteItem}
               />
             </React.Fragment>
           );

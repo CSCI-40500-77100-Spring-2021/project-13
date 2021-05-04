@@ -1,6 +1,6 @@
-import { AssignmentTurnedInRounded } from '@material-ui/icons';
+import { DeleteForever, AssignmentTurnedInRounded } from '@material-ui/icons';
 
-const Event = ({ event, onDoneEvent, onEventReminder }) => {
+const Event = ({ event, onDoneEvent, onDeleteItem }) => {
   return (
     <div className="items">
       <div>
@@ -9,8 +9,13 @@ const Event = ({ event, onDoneEvent, onEventReminder }) => {
         <p>{event.time}</p>
       </div>
       <div>
+        <DeleteForever
+          style={{ color: '#F88379', cursor: 'pointer' }}
+          onClick={() => onDeleteItem('event', event)}
+        />
+        <span style={{ padding: '5px' }}>|</span>
         <AssignmentTurnedInRounded
-          style={{ color: '#90c695', cursor: 'pointer' }}
+          style={{ color: '#90c695', cursor: 'pointer', marginRight: '0' }}
           onClick={() => onDoneEvent(event)}
         />
       </div>

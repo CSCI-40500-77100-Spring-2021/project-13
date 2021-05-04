@@ -1,6 +1,6 @@
 import CompletedItem from './CompletedItem';
 
-const CompletedItems = ({ completedItems, onDeleteCompletedItem }) => {
+const CompletedItems = ({ completedItems, onDeleteItem }) => {
   return (
     <div>
       {completedItems.length > 0
@@ -9,7 +9,7 @@ const CompletedItems = ({ completedItems, onDeleteCompletedItem }) => {
               <CompletedItem
                 key={index}
                 completedItem={completedItem}
-                onDeleteCompletedItem={onDeleteCompletedItem}
+                onDeleteItem={onDeleteItem}
               />
             );
           })

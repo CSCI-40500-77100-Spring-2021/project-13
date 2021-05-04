@@ -1,6 +1,6 @@
 import { DeleteForever } from '@material-ui/icons';
 
-const CompletedItem = ({ completedItem, onDeleteCompletedItem }) => {
+const CompletedItem = ({ completedItem, onDeleteItem }) => {
   return (
     <div
       className="items"
@@ -9,7 +9,7 @@ const CompletedItem = ({ completedItem, onDeleteCompletedItem }) => {
       {completedItem.text}
       <DeleteForever
         style={{ color: '#F88379', cursor: 'pointer' }}
-        onClick={() => onDeleteCompletedItem(completedItem)}
+        onClick={() => onDeleteItem('completed', completedItem)}
       />
     </div>
   );
