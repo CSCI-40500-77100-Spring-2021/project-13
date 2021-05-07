@@ -1,109 +1,117 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Tabs, Tab } from '@material-ui/core';
 
 import Todos from './Todo/Todos';
 import Events from './Event/Events';
 import CompletedItems from './Completed/CompletedItems';
 import { TabPanel, a11yProps } from '../Util';
+import { db } from '../../firebase';
+import { useAuth } from '../../AuthContext';
+import firebase from 'firebase/app';
 
 const TodoList = () => {
+  const { currentUser } = useAuth();
   const [value, setValue] = useState(0);
   const toggle = (event, newValue) => {
     setValue(newValue);
   };
 
-  const [todos, setTodos] = useState([
-    {
-      id: 1,
-      text: 'Fix event tab',
-    },
-    {
-      id: 2,
-      text: 'Add the journal',
-    },
-  ]);
-
-  const [events, setEvents] = useState([
-    {
-      id: 1,
-      text: 'Meeting w/ myDay team',
-      day: 'Tue, Mar 23, 2021',
-      time: '9:45 PM',
-    },
-    {
-      id: 2,
-      text: 'Submit the prototype',
-      day: 'Wed, Mar 24, 2021',
-      time: '10:15 AM',
-    },
-    {
-      id: 3,
-      text: 'Study for midterm',
-      day: 'Mon, Mar 29, 2021',
-      time: '4:45 PM',
-    },
-  ]);
-
+  const [todos, setTodos] = useState([]);
+  const [events, setEvents] = useState([]);
   const [completedItems, setCompletedItems] = useState('');
+
+  useEffect(() => {
+    fetchTodos();
+    fetchEvents();
+    fetchCompletedItems();
+  }, []);
+
+  const fetchTodos = () => {
+    db.collection(`users/${currentUser.uid}/todos`)
+      .orderBy('timestamp', 'asc')
+      .onSnapshot((snapshot) => {
+        setTodos(
+          snapshot.docs.map((doc) => ({
+            id: doc.id,
+            todo: doc.data().todo,
+          }))
+        );
+      });
+  };
+
+  const fetchEvents = () => {
+    db.collection(`users/${currentUser.uid}/events`)
+      .orderBy('timestamp', 'asc')
+      .onSnapshot((snapshot) => {
+        setEvents(
+          snapshot.docs.map((doc) => ({
+            id: doc.id,
+            event: doc.data().event,
+            day: doc.data().day,
+            time: doc.data().time,
+          }))
+        );
+      });
+  };
+
+  const fetchCompletedItems = () => {
+    db.collection(`users/${currentUser.uid}/completedItems`)
+      .orderBy('timestamp', 'desc')
+      .onSnapshot((snapshot) => {
+        setCompletedItems(
+          snapshot.docs.map((doc) => ({
+            id: doc.id,
+            item: doc.data().item,
+          }))
+        );
+      });
+  };
 
   const addTodo = (userInput) => {
     if (userInput !== '') {
-      let prevTodos = [...todos];
-      prevTodos = [...prevTodos, { id: todos.length + 1, text: userInput }];
-      setTodos(prevTodos);
+      db.collection(`users/${currentUser.uid}/todos`).add({
+        todo: userInput,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+      });
     }
   };
 
   const addEvent = (userInput, day, time) => {
     if (userInput !== '') {
-      let prevEvents = [...events];
-      prevEvents = [
-        ...prevEvents,
-        {
-          id: events.length + 1,
-          text: userInput,
-          day: day,
-          time: time,
-        },
-      ];
-      setEvents(prevEvents);
+      db.collection(`users/${currentUser.uid}/events`).add({
+        event: userInput,
+        day: day,
+        time: time,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+      });
     }
   };
 
   const doneTodo = (item) => {
-    let prevCompletedItems = [...completedItems];
-    prevCompletedItems = [
-      ...prevCompletedItems,
-      {
-        id: completedItems.length + 1,
-        text: item.text,
-      },
-    ];
-    setCompletedItems(prevCompletedItems);
-    setTodos(todos.filter((todo) => todo.id !== item.id));
+    db.collection(`users/${currentUser.uid}/completedItems`).add({
+      item: item.todo,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+    });
+    db.collection(`users/${currentUser.uid}/todos`).doc(item.id).delete();
   };
 
   const doneEvent = (item) => {
-    let prevCompletedItems = [...completedItems];
-    prevCompletedItems = [
-      ...prevCompletedItems,
-      {
-        id: completedItems.length + 1,
-        text: item.text,
-      },
-    ];
-    setCompletedItems(prevCompletedItems);
-    setEvents(events.filter((event) => event.id !== item.id));
+    db.collection(`users/${currentUser.uid}/completedItems`).add({
+      item: item.event,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+    });
+    db.collection(`users/${currentUser.uid}/events`).doc(item.id).delete();
   };
 
   const deleteItem = (group, item) => {
-    if (group === 'todo') setTodos(todos.filter((todo) => todo.id !== item.id));
+    if (group === 'todo')
+      db.collection(`users/${currentUser.uid}/todos`).doc(item.id).delete();
     else if (group === 'event')
-      setEvents(events.filter((event) => event.id !== item.id));
+      db.collection(`users/${currentUser.uid}/events`).doc(item.id).delete();
     else
-      setCompletedItems(
-        completedItems.filter((completedItem) => completedItem.id !== item.id)
-      );
+      db.collection(`users/${currentUser.uid}/completedItems`)
+        .doc(item.id)
+        .delete();
   };
 
   return (

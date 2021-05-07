@@ -25,56 +25,57 @@ const Events = ({ events, onAddEvent, onDoneEvent, onDeleteItem }) => {
 
   return (
     <>
-      <Box
-        marginTop={2}
-        className={classes.label}
-        autoComplete="off"
-        style={{ flex: '1' }}
-      >
-        <TextField
-          id="outlined-basic"
-          fullWidth
-          required
-          label="Add An Event"
-          variant="outlined"
-          value={userInput}
-          onChange={handleChnage}
-        />
-      </Box>
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'space-around',
-          alignItems: 'center',
-        }}
-      >
-        <MuiPickersUtilsProvider utils={DateFnsUtils}>
-          <Box marginTop={2} className={classes.label}>
-            <DateTimePicker
-              label="Date & Time"
-              inputVariant="outlined"
-              disablePast
-              value={date}
-              onChange={setDate}
-              showTodayButton
-            />
-          </Box>
-        </MuiPickersUtilsProvider>
-        <Button
-          type="submit"
-          onClick={handleAddEvent}
-          variant="contained"
-          size="large"
+      <form onSubmit={handleAddEvent} noValidate>
+        <Box
+          marginTop={2}
+          className={classes.label}
+          autoComplete="off"
+          style={{ flex: '1' }}
+        >
+          <TextField
+            id="outlined-basic"
+            fullWidth
+            required
+            label="Add An Event"
+            variant="outlined"
+            value={userInput}
+            onChange={handleChnage}
+          />
+        </Box>
+        <div
           style={{
-            marginTop: '20px',
-            background: '#90c695',
-            borderRadius: '50px',
-            flex: '0.6',
+            display: 'flex',
+            justifyContent: 'space-around',
+            alignItems: 'center',
           }}
         >
-          Add
-        </Button>
-      </div>
+          <MuiPickersUtilsProvider utils={DateFnsUtils}>
+            <Box marginTop={2} className={classes.label}>
+              <DateTimePicker
+                label="Date & Time"
+                inputVariant="outlined"
+                disablePast
+                value={date}
+                onChange={setDate}
+                showTodayButton
+              />
+            </Box>
+          </MuiPickersUtilsProvider>
+          <Button
+            type="submit"
+            variant="contained"
+            size="large"
+            style={{
+              marginTop: '20px',
+              background: '#90c695',
+              borderRadius: '50px',
+              flex: '0.6',
+            }}
+          >
+            Add
+          </Button>
+        </div>
+      </form>
       <div>
         {events.map((event) => {
           return (

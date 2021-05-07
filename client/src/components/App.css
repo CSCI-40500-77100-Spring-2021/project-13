@@ -1,6 +1,8 @@
-body {
-  background-image: url('../imgs/home-background.svg');
-  height: 100vh;
+html {
+  background: url('../imgs/home-background.svg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
   background-size: cover;
 }
 
@@ -15,7 +17,6 @@ body {
   height: 100%;
   margin: 0 auto;
   position: relative;
-  overflow: hidden;
 }
 
 .header {
@@ -26,8 +27,12 @@ body {
   border-bottom: 1.5px solid #333;
 }
 
-.brand {
-  cursor: pointer;
+.grid-container {
+  color: beige;
+  background: #362b2b;
+  border-radius: 15px;
+  padding: 2rem;
+  box-shadow: 7px 7px 7px #121212;
 }
 
 .greeting-container {
@@ -39,23 +44,7 @@ body {
 .day-weather {
   display: flex;
   justify-content: space-between;
-}
-
-.day-info p {
-  font-size: 18px;
-  padding-left: 20px;
-  margin: 0;
-}
-
-.weather-info p {
-  font-size: 18px;
-  padding-right: 20px;
-  margin: 0;
-}
-
-.greeting {
-  text-align: center;
-  padding-top: 25px;
+  padding: 0.5rem 4rem 0;
 }
 
 .card-container {
@@ -76,12 +65,12 @@ body {
   justify-content: space-between;
   color: beige;
   margin: 10px auto;
-  padding: 15px 25px 15px;
+  padding: 15px 10px;
   background-color: #362b2b;
   border-radius: 15px;
 }
 
 .items p {
-  font-size: 15px;
+  font-size: 14px;
   margin: 0;
 }

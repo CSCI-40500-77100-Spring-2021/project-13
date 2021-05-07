@@ -1,24 +1,24 @@
-import { DeleteForever, AssignmentTurnedInRounded } from '@material-ui/icons';
+import { DeleteForever, DoneAll } from '@material-ui/icons';
 
 const Event = ({ event, onDoneEvent, onDeleteItem }) => {
   return (
     <div className="items">
-      <div>
-        <p>{event.text}</p>
-        <p>{event.day}</p>
-        <p>{event.time}</p>
-      </div>
-      <div>
-        <DeleteForever
-          style={{ color: '#F88379', cursor: 'pointer' }}
-          onClick={() => onDeleteItem('event', event)}
-        />
-        <span style={{ padding: '5px' }}>|</span>
-        <AssignmentTurnedInRounded
-          style={{ color: '#90c695', cursor: 'pointer', marginRight: '0' }}
+      <div style={{ display: 'flex', alignItems: 'center' }}>
+        <DoneAll
+          style={{ color: '#90c695', cursor: 'pointer', paddingRight: '10px' }}
           onClick={() => onDoneEvent(event)}
         />
+        <div>
+          <p>{event.event}</p>
+          <p>
+            {event.day} - {event.time}
+          </p>
+        </div>
       </div>
+      <DeleteForever
+        style={{ color: '#F88379', cursor: 'pointer' }}
+        onClick={() => onDeleteItem('event', event)}
+      />
     </div>
   );
 };

@@ -19,7 +19,9 @@ const Todos = ({ todos, onAddTodo, onDoneTodo, onDeleteItem }) => {
   };
   return (
     <>
-      <div
+      <form
+        onSubmit={handleAddTodo}
+        noValidate
         style={{
           display: 'flex',
           justifyContent: 'space-between',
@@ -44,7 +46,6 @@ const Todos = ({ todos, onAddTodo, onDoneTodo, onDeleteItem }) => {
         </Box>
         <Button
           type="submit"
-          onClick={handleAddTodo}
           variant="contained"
           size="large"
           style={{
@@ -56,7 +57,7 @@ const Todos = ({ todos, onAddTodo, onDoneTodo, onDeleteItem }) => {
         >
           Add
         </Button>
-      </div>
+      </form>
       <div>
         {todos.map((todo) => {
           return (

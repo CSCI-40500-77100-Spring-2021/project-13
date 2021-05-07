@@ -6,7 +6,7 @@ const CompletedItem = ({ completedItem, onDeleteItem }) => {
       className="items"
       style={{ textDecoration: 'line-through', color: '#989898' }}
     >
-      {completedItem.text}
+      {completedItem.item}
       <DeleteForever
         style={{ color: '#F88379', cursor: 'pointer' }}
         onClick={() => onDeleteItem('completed', completedItem)}

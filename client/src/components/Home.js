@@ -1,12 +1,19 @@
 import { useState } from 'react';
 import { Box, Typography, Tabs, Tab } from '@material-ui/core';
+import { Redirect } from 'react-router-dom';
 
 import SignUp from './SignUp';
 import SignIn from './SignIn';
 import { TabPanel, a11yProps } from './Util';
+import { useAuth } from '../AuthContext';
 
 const Home = () => {
   const [value, setValue] = useState(0);
+  const { currentUser } = useAuth();
+
+  if (currentUser) {
+    return <Redirect to="/dashboard" />;
+  }
 
   const toggle = (event, newValue) => {
     setValue(newValue);
@@ -15,9 +22,7 @@ const Home = () => {
   return (
     <div className="login-container">
       <Box align="center" paddingTop={5} paddingBottom={3}>
-        <Typography component="span" variant="h5">
-          Welcome to myDay!
-        </Typography>
+        <Typography variant="h5">Welcome to myDay!</Typography>
         <div
           style={{ borderBottom: '1px solid #333', paddingTop: '1rem' }}
         ></div>

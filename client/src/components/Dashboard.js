@@ -1,17 +1,14 @@
 import { useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import { Container, Tabs, Tab, Button } from '@material-ui/core';
-import moment from 'moment';
+import { useHistory, Link } from 'react-router-dom';
+import { Container, Tabs, Tab, Button, Typography } from '@material-ui/core';
 
-import Day from './Day';
+import Day from './Day/Day';
 import TodoList from './TodoList/TodoList';
 import { TabPanel, a11yProps } from './Util';
 import { useAuth } from '../AuthContext';
 
 const Dashboard = () => {
-  const [date] = useState(new Date());
   const [value, setValue] = useState(0);
-
   const toggle = (event, newValue) => {
     setValue(newValue);
   };
@@ -31,7 +28,14 @@ const Dashboard = () => {
   return (
     <Container maxWidth="md">
       <header className="header">
-        <h2 className="brand">myDay</h2>
+        <Typography variant="h5" style={{ cursor: 'pointer' }}>
+          <Link
+            to="/dashboard"
+            style={{ textDecoration: 'none', color: '#000' }}
+          >
+            myDay
+          </Link>
+        </Typography>
         <Button
           style={{ borderRadius: '50px', backgroundColor: '#F88379' }}
           variant="contained"
@@ -45,7 +49,7 @@ const Dashboard = () => {
         style={{
           background: 'rgb(34,193,195)',
           borderRadius: '50px',
-          marginTop: '20px',
+          margin: '20px auto',
         }}
         value={value}
         onChange={toggle}
@@ -55,9 +59,11 @@ const Dashboard = () => {
         scrollButtons="on"
         aria-label="scrollable auto tabs"
       >
-        <Tab label={`${moment(date).format('ll')}`} {...a11yProps(0)} />
+        {/* <Tab label={`${moment(date).format('ll')}`} {...a11yProps(0)} /> */}
+        <Tab label="Today" {...a11yProps(0)} />
         <Tab label="Tasks" {...a11yProps(1)} />
         <Tab label="Journal" {...a11yProps(2)} />
+        <Tab label="Teest" {...a11yProps(3)} />
       </Tabs>
       <TabPanel value={value} index={0}>
         <Day />
