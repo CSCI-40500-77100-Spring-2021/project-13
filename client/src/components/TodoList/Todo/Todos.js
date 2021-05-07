@@ -7,13 +7,15 @@ import { useStyles } from '../../Util';
 const Todos = ({ todos, onAddTodo, onDoneTodo, onDeleteItem }) => {
   const classes = useStyles();
   const [userInput, setUserInput] = useState('');
+  const [todoStatus, setTodoStauts] = useState(false);
 
-  const handleChnage = (e) => {
-    setUserInput(e.currentTarget.value);
+  const validateTodo = (event) => {
+    setUserInput(event.target.value);
+    event.target.value === '' ? setTodoStauts(false) : setTodoStauts(true);
   };
 
-  const handleAddTodo = (e) => {
-    e.preventDefault();
+  const handleAddTodo = (event) => {
+    event.preventDefault();
     onAddTodo(userInput);
     setUserInput('');
   };
@@ -26,6 +28,8 @@ const Todos = ({ todos, onAddTodo, onDoneTodo, onDeleteItem }) => {
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
+          maxWidth: '35rem',
+          margin: 'auto',
         }}
       >
         <Box
@@ -41,7 +45,7 @@ const Todos = ({ todos, onAddTodo, onDoneTodo, onDeleteItem }) => {
             label="Add A To-Do"
             variant="outlined"
             value={userInput}
-            onChange={handleChnage}
+            onChange={validateTodo}
           />
         </Box>
         <Button
@@ -54,6 +58,7 @@ const Todos = ({ todos, onAddTodo, onDoneTodo, onDeleteItem }) => {
             background: '#90c695',
             borderRadius: '50px',
           }}
+          disabled={!todoStatus}
         >
           Add
         </Button>

@@ -11,7 +11,7 @@ const Event = ({ event, onDoneEvent, onDeleteItem }) => {
         <div>
           <p>{event.event}</p>
           <p>
-            {event.day} - {event.time}
+            {event.day} at {event.time}
           </p>
         </div>
       </div>

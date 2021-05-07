@@ -11,13 +11,15 @@ const Events = ({ events, onAddEvent, onDoneEvent, onDeleteItem }) => {
   const classes = useStyles();
   const [userInput, setUserInput] = useState('');
   const [date, setDate] = useState(new Date());
+  const [eventStatus, setEventStauts] = useState(false);
 
-  const handleChnage = (e) => {
-    setUserInput(e.currentTarget.value);
+  const validateEvent = (event) => {
+    setUserInput(event.target.value);
+    event.target.value === '' ? setEventStauts(false) : setEventStauts(true);
   };
 
-  const handleAddEvent = (e) => {
-    e.preventDefault();
+  const handleAddEvent = (event) => {
+    event.preventDefault();
     onAddEvent(userInput, moment(date).format('ll'), moment(date).format('LT'));
     setUserInput('');
     setDate(new Date());
@@ -25,7 +27,14 @@ const Events = ({ events, onAddEvent, onDoneEvent, onDeleteItem }) => {
 
   return (
     <>
-      <form onSubmit={handleAddEvent} noValidate>
+      <form
+        onSubmit={handleAddEvent}
+        noValidate
+        style={{
+          maxWidth: '35rem',
+          margin: 'auto',
+        }}
+      >
         <Box
           marginTop={2}
           className={classes.label}
@@ -39,7 +48,7 @@ const Events = ({ events, onAddEvent, onDoneEvent, onDeleteItem }) => {
             label="Add An Event"
             variant="outlined"
             value={userInput}
-            onChange={handleChnage}
+            onChange={validateEvent}
           />
         </Box>
         <div
@@ -71,6 +80,7 @@ const Events = ({ events, onAddEvent, onDoneEvent, onDeleteItem }) => {
               borderRadius: '50px',
               flex: '0.6',
             }}
+            disabled={!eventStatus}
           >
             Add
           </Button>

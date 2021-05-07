@@ -20,7 +20,13 @@ const Home = () => {
   };
 
   return (
-    <div className="login-container">
+    <div
+      style={{
+        maxWidth: '25rem',
+        margin: 'auto',
+        padding: '1rem',
+      }}
+    >
       <Box align="center" paddingTop={5} paddingBottom={3}>
         <Typography variant="h5">Welcome to myDay!</Typography>
         <div

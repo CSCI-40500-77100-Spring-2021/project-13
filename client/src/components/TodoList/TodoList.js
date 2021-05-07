@@ -119,6 +119,8 @@ const TodoList = () => {
       <Tabs
         style={{
           background: 'rgba(255,174,0)',
+          maxWidth: '35rem',
+          margin: 'auto',
           borderRadius: '50px',
         }}
         value={value}

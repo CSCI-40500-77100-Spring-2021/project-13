@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Box, TextField, Button, CircularProgress } from '@material-ui/core';
+import { Box, TextField, Button } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
 import { useHistory } from 'react-router-dom';
 

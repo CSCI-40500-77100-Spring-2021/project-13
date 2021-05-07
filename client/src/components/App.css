@@ -6,12 +6,6 @@ html {
   background-size: cover;
 }
 
-.login-container {
-  max-width: 25rem;
-  margin: auto;
-  padding: 1rem;
-}
-
 .container {
   max-width: 100rem;
   height: 100%;
@@ -35,31 +29,8 @@ html {
   box-shadow: 7px 7px 7px #121212;
 }
 
-.greeting-container {
-  max-width: 20rem;
-  margin: 0 auto;
-  position: relative;
-}
-
-.day-weather {
-  display: flex;
-  justify-content: space-between;
-  padding: 0.5rem 4rem 0;
-}
-
-.card-container {
-  max-width: 35rem;
-  padding: 15px;
-  margin: 25px auto;
-}
-
-.todo-form {
-  width: 100%;
-  margin: auto;
-  height: 100%;
-}
-
 .items {
+  max-width: 33rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -67,7 +38,7 @@ html {
   margin: 10px auto;
   padding: 15px 10px;
   background-color: #362b2b;
-  border-radius: 15px;
+  border-radius: 10px;
 }
 
 .items p {
