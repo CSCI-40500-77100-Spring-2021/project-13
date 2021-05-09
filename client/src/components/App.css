@@ -6,6 +6,22 @@ html {
   background-size: cover;
 }
 
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+::-moz-selection {
+  /* Code for Firefox */
+  color: black;
+  background: orange;
+}
+
+::selection {
+  color: black;
+  background: orange;
+}
+
 .container {
   max-width: 100rem;
   height: 100%;
@@ -22,7 +38,7 @@ html {
 }
 
 .grid-container {
-  color: beige;
+  color: rgb(212, 211, 211);
   background: #362b2b;
   border-radius: 15px;
   padding: 2rem;
@@ -34,7 +50,7 @@ html {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  color: beige;
+  color: rgb(212, 211, 211);
   margin: 10px auto;
   padding: 15px 10px;
   background-color: #362b2b;
@@ -42,6 +58,15 @@ html {
 }
 
 .items p {
-  font-size: 14px;
+  font-size: 15px;
   margin: 0;
+}
+
+.post {
+  max-width: 40rem;
+  color: rgb(200, 200, 200);
+  margin: 10px auto;
+  padding: 5px 20px;
+  background-color: #362b2b;
+  border-radius: 10px;
 }

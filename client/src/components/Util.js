@@ -32,9 +32,24 @@ export const a11yProps = (index) => {
 
 export const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1,
-    width: '100%',
-    backgroundColor: theme.palette.background.paper,
+    '& label.Mui-focused': {
+      color: 'black',
+    },
+    '& .MuiInput-underline:after': {
+      borderBottomColor: 'red',
+    },
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderRadius: '10px',
+        borderColor: 'black',
+      },
+      '&:hover fieldset': {
+        borderColor: 'purple',
+      },
+      '&.Mui-focused fieldset': {
+        borderColor: 'purple',
+      },
+    },
   },
   label: {
     '& label.Mui-focused': {

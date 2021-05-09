@@ -10,7 +10,7 @@ import PrivateRoute from './PrivateRoute';
 
 const theme = createMuiTheme({
   typography: {
-    fontFamily: ['Poppins'].join(','),
+    fontFamily: ['KoHo', 'sans-serif'].join(','),
   },
 });
 
