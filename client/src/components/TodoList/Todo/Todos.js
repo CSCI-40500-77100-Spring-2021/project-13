@@ -18,6 +18,7 @@ const Todos = ({ todos, onAddTodo, onDoneTodo, onDeleteItem }) => {
     event.preventDefault();
     onAddTodo(userInput);
     setUserInput('');
+    setTodoStauts(false);
   };
   return (
     <>
@@ -28,7 +29,7 @@ const Todos = ({ todos, onAddTodo, onDoneTodo, onDeleteItem }) => {
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
-          maxWidth: '35rem',
+          maxWidth: '34rem',
           margin: 'auto',
         }}
       >

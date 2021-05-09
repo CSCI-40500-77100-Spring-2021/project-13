@@ -20,18 +20,23 @@ const Events = ({ events, onAddEvent, onDoneEvent, onDeleteItem }) => {
 
   const handleAddEvent = (event) => {
     event.preventDefault();
-    onAddEvent(userInput, moment(date).format('ll'), moment(date).format('LT'));
+    onAddEvent(
+      userInput,
+      moment(date).format('ddd, MMM Do'),
+      moment(date).format('LT')
+    );
     setUserInput('');
     setDate(new Date());
+    setEventStauts(false);
   };
 
   return (
-    <>
+    <div>
       <form
         onSubmit={handleAddEvent}
         noValidate
         style={{
-          maxWidth: '35rem',
+          maxWidth: '34rem',
           margin: 'auto',
         }}
       >
@@ -99,7 +104,7 @@ const Events = ({ events, onAddEvent, onDoneEvent, onDeleteItem }) => {
           );
         })}
       </div>
-    </>
+    </div>
   );
 };
 

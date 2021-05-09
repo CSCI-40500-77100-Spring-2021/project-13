@@ -10,7 +10,7 @@ const Event = ({ event, onDoneEvent, onDeleteItem }) => {
         />
         <div>
           <p>{event.event}</p>
-          <p>
+          <p style={{ fontSize: '13px' }}>
             {event.day} at {event.time}
           </p>
         </div>

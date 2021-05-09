@@ -68,23 +68,19 @@ const TodoList = () => {
   };
 
   const addTodo = (userInput) => {
-    if (userInput !== '') {
-      db.collection(`users/${currentUser.uid}/todos`).add({
-        todo: userInput,
-        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-      });
-    }
+    db.collection(`users/${currentUser.uid}/todos`).add({
+      todo: userInput,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+    });
   };
 
   const addEvent = (userInput, day, time) => {
-    if (userInput !== '') {
-      db.collection(`users/${currentUser.uid}/events`).add({
-        event: userInput,
-        day: day,
-        time: time,
-        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-      });
-    }
+    db.collection(`users/${currentUser.uid}/events`).add({
+      event: userInput,
+      day: day,
+      time: time,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+    });
   };
 
   const doneTodo = (item) => {
