@@ -64,7 +64,7 @@ const Post = ({ post, onEditPost, onDeletePost }) => {
         <DialogTitle id="form-dialog-title">Edit Your Post</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Make your changes and press 'SAVE', and if you want keep the
+            Make your changes then press 'SAVE', and if you want keep the
             original post, press 'CANCEL'!
           </DialogContentText>
           <Box

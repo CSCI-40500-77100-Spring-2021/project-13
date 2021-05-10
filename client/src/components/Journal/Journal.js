@@ -4,7 +4,7 @@ import axios from 'axios';
 import Posts from './Post/Posts';
 import { useAuth } from '../../AuthContext';
 
-const URI = 'http://localhost:5000/posts/';
+const URI = 'https://myday-posts.vercel.app/posts/';
 
 const Journal = () => {
   const { currentUser } = useAuth();
