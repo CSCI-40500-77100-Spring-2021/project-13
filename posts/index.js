@@ -14,7 +14,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 const apiRoutes = require('./routes/data-routes.js');
-app.use(apiRoutes);
+app.use('/posts', apiRoutes);
 
 // Connect to MongoDB -- Local Database
 mongoose.connect(

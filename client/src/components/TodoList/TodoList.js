@@ -21,9 +21,13 @@ const TodoList = () => {
   const [completedItems, setCompletedItems] = useState('');
 
   useEffect(() => {
+    let isMounted = true;
     fetchTodos();
     fetchEvents();
     fetchCompletedItems();
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   const fetchTodos = () => {

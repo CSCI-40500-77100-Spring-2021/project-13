@@ -3,7 +3,8 @@ import { Box, TextField, Button } from '@material-ui/core';
 
 import Post from './Post';
 import { useStyles } from '../../Util';
-const Posts = ({ posts, onAddPost, onDeletePost }) => {
+
+const Posts = ({ posts, onAddPost, onEditPost, onDeletePost }) => {
   const classes = useStyles();
   const [showForm, setShowForm] = useState(false);
   const [titleInput, setTitleInput] = useState('');
@@ -31,7 +32,7 @@ const Posts = ({ posts, onAddPost, onDeletePost }) => {
 
   const handleAddPost = (event) => {
     event.preventDefault();
-    onAddPost(titleInput, bodyInput);
+    onAddPost(titleInput, bodyInput, new Date());
     setShowForm(!showForm);
   };
 
@@ -98,7 +99,7 @@ const Posts = ({ posts, onAddPost, onDeletePost }) => {
               }}
               disabled={!titleStatus || !bodyStatus}
             >
-              Save
+              Post
             </Button>
           </div>
           <Box marginTop={2} className={classes.root} autoComplete="off">
@@ -122,7 +123,7 @@ const Posts = ({ posts, onAddPost, onDeletePost }) => {
             <React.Fragment key={post._id}>
               <Post
                 post={post}
-                // onDoneTodo={onDoneTodo}
+                onEditPost={onEditPost}
                 onDeletePost={onDeletePost}
               />
             </React.Fragment>

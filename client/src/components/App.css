@@ -38,7 +38,7 @@ html {
 }
 
 .grid-container {
-  color: rgb(212, 211, 211);
+  color: rgb(219, 219, 219);
   background: #362b2b;
   border-radius: 15px;
   padding: 2rem;
@@ -50,7 +50,7 @@ html {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  color: rgb(212, 211, 211);
+  color: rgb(219, 219, 219);
   margin: 10px auto;
   padding: 15px 10px;
   background-color: #362b2b;
@@ -58,13 +58,12 @@ html {
 }
 
 .items p {
-  font-size: 15px;
   margin: 0;
 }
 
 .post {
   max-width: 40rem;
-  color: rgb(200, 200, 200);
+  color: rgb(219, 219, 219);
   margin: 10px auto;
   padding: 5px 20px;
   background-color: #362b2b;

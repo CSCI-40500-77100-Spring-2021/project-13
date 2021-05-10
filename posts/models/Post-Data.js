@@ -8,6 +8,7 @@ const postSchema = mongoose.Schema(
     title: { type: String, default: '' },
     body: { type: String, default: '' },
     createdAt: { type: Date, default: Date.now() },
+    modifiedAt: { type: Date, default: Date.now() },
   },
   {
     versionKey: false, // You should be aware of the outcome after set to false

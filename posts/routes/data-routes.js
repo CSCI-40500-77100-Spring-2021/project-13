@@ -14,6 +14,22 @@ router.post('/', async (req, res) => {
   });
 });
 
+router.put('/:uid/:id', async (req, res) => {
+  const userId = req.params.uid;
+  const id = req.params.id;
+  try {
+    const post = await postData.findOneAndUpdate(
+      { uid: userId, _id: id },
+      req.body
+    );
+    post
+      ? res.json({ msg: `Post with id: ${id} is updated!` })
+      : res.json({ msg: 'No post found!' });
+  } catch (err) {
+    res.json({ msg: err });
+  }
+});
+
 router.delete('/:uid/:id', async (req, res) => {
   const userId = req.params.uid;
   const id = req.params.id;
@@ -39,8 +55,8 @@ router.get('/', async (req, res) => {
 router.get('/:uid', async (req, res) => {
   const userId = req.params.uid;
   try {
-    const userPosts = await postData.findOne({ uid: userId });
-    userPosts ? res.json(userPosts) : res.json({ msg: 'No posts found!' });
+    const userPosts = await postData.find({ uid: userId });
+    res.json(userPosts);
   } catch (err) {
     res.json({ msg: err });
   }
@@ -51,7 +67,7 @@ router.get('/:uid/:id', async (req, res) => {
   const id = req.params.id;
   try {
     const post = await postData.findOne({ uid: userId, _id: id });
-    post ? res.json(post) : res.json({ msg: 'No post found!' });
+    res.json(post);
   } catch (err) {
     res.json({ msg: err });
   }
