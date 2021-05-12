@@ -1,0 +1,321 @@
+import { useState } from 'react';
+import { Box, TextField, Button } from '@material-ui/core';
+import { Alert } from '@material-ui/lab';
+
+import { useAuth } from '../../AuthContext';
+import { useStyles } from '../Util';
+
+const UpdateAccount = () => {
+  const classes = useStyles();
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [nameError, setNameError] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+  const [confirmPasswordError, setConfirmPasswordError] = useState('');
+  const [nameStatus, setNameStatus] = useState(false);
+  const [emailStatus, setEmailStatus] = useState(false);
+  const [passwordStatus, setPasswordStatus] = useState(false);
+  const [message, setMessage] = useState('');
+  const [updateError, setUpdateError] = useState('');
+  const { currentUser, updateName, updateEmail, updatePassword } = useAuth();
+
+  const validateName = (event) => {
+    setName(event.target.value);
+    if (event.target.value !== '' && !event.target.value.match(/[a-z]/i)) {
+      setName('');
+      setNameError('Needs to start with a letter [A-Z]!');
+      setNameStatus(false);
+    } else if (event.target.value === currentUser.displayName) {
+      setNameError(
+        'Sorry, new name needs to be different than your current name!'
+      );
+      setNameStatus(false);
+    } else if (event.target.value.length < 3) {
+      setNameError('Name length needs to be >= 3!');
+      setNameStatus(false);
+    } else {
+      setNameError('');
+      setNameStatus(true);
+    }
+
+    if (event.target.value === '') {
+      setNameError('');
+    }
+  };
+
+  const validateEmail = (event) => {
+    setEmail(event.target.value);
+    if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(event.target.value)) {
+      setEmailError('Email is invalid!');
+      setEmailStatus(false);
+    } else if (event.target.value === currentUser.email) {
+      setEmailError(
+        'Sorry, new email needs to be different than your current email!'
+      );
+      setEmailStatus(false);
+    } else {
+      setEmailError('');
+      setEmailStatus(true);
+    }
+
+    if (event.target.value === '') {
+      setEmailError('');
+    }
+  };
+
+  const validatePassword = (event) => {
+    setPassword(event.target.value);
+    if (event.target.value.length < 6) {
+      setPasswordError('Password length needs to be >= 6!');
+      setPasswordStatus(false);
+    } else if (confirmPassword !== event.target.value) {
+      setPasswordError('');
+      setConfirmPasswordError('Passwords needs to be matched!');
+      setPasswordStatus(false);
+    } else {
+      setPasswordError('');
+      setConfirmPasswordError('');
+      setPasswordStatus(true);
+    }
+
+    if (event.target.value === '') {
+      setPasswordError('');
+      setConfirmPasswordError('');
+    }
+  };
+
+  const validateConfirmPassword = (event) => {
+    setConfirmPassword(event.target.value);
+    if (password !== event.target.value) {
+      setConfirmPasswordError('Passwords needs to be matched!');
+      setPasswordStatus(false);
+    } else {
+      setConfirmPasswordError('');
+      setPasswordStatus(true);
+    }
+  };
+
+  const handleUpdate = (event) => {
+    event.preventDefault();
+    const promises = [];
+    setUpdateError('');
+
+    if (name !== '' && name !== currentUser.displayName) {
+      promises.push(updateName(name));
+    }
+    if (email !== '' && email !== currentUser.email) {
+      promises.push(updateEmail(email));
+    }
+    if (password !== '') {
+      promises.push(updatePassword(password));
+    }
+
+    Promise.all(promises)
+      .then(() => {
+        setMessage(
+          'You successfully updated your account! Please refresh the page...'
+        );
+        setName('');
+        setEmail('');
+        setPassword('');
+        setConfirmPassword('');
+      })
+      .catch(() => {
+        setUpdateError('Failed to update account');
+      });
+  };
+
+  return (
+    <>
+      <form
+        onSubmit={handleUpdate}
+        noValidate
+        style={{
+          alignItems: 'center',
+          maxWidth: '23rem',
+          margin: 'auto',
+        }}
+      >
+        <Box marginBottom={3}>
+          <Alert
+            severity="info"
+            style={{
+              borderRadius: '50px',
+              opacity: '0.8',
+            }}
+          >
+            Only type in the field(s) you want to update! Leave other fields
+            empty...
+          </Alert>
+
+          {nameError && (
+            <Alert
+              severity="warning"
+              style={{
+                marginTop: '8px',
+                borderRadius: '50px',
+                opacity: '0.8',
+              }}
+            >
+              {nameError}
+            </Alert>
+          )}
+
+          {emailError && (
+            <Alert
+              severity="warning"
+              style={{
+                marginTop: '8px',
+                borderRadius: '50px',
+                opacity: '0.8',
+              }}
+            >
+              {emailError}
+            </Alert>
+          )}
+
+          {passwordError && (
+            <Alert
+              severity="warning"
+              style={{
+                marginTop: '8px',
+                borderRadius: '50px',
+                opacity: '0.8',
+              }}
+            >
+              {passwordError}
+            </Alert>
+          )}
+
+          {confirmPasswordError && (
+            <Alert
+              severity="warning"
+              style={{
+                marginTop: '8px',
+                borderRadius: '50px',
+                opacity: '0.8',
+              }}
+            >
+              {confirmPasswordError}
+            </Alert>
+          )}
+
+          {message && (
+            <Alert
+              severity="success"
+              style={{
+                marginTop: '8px',
+                borderRadius: '50px',
+                opacity: '0.8',
+              }}
+            >
+              {message}
+            </Alert>
+          )}
+
+          {updateError && (
+            <Alert
+              severity="error"
+              style={{
+                marginTop: '8px',
+                borderRadius: '50px',
+                opacity: '0.8',
+              }}
+            >
+              {updateError}
+            </Alert>
+          )}
+        </Box>
+        <Box className={classes.label} autoComplete="off">
+          <TextField
+            id="outlined-basic-1"
+            fullWidth
+            label="Current Name"
+            defaultValue={currentUser.displayName}
+            variant="outlined"
+            disabled
+          />
+        </Box>
+        <Box marginTop={2} className={classes.label} autoComplete="off">
+          <TextField
+            id="outlined-basic-2"
+            fullWidth
+            label="Current Email"
+            defaultValue={currentUser.email}
+            variant="outlined"
+            disabled
+          />
+        </Box>
+        <Box marginTop={2} className={classes.label} autoComplete="off">
+          <TextField
+            id="outlined-basic-3"
+            fullWidth
+            label="New Name"
+            variant="outlined"
+            value={name}
+            onChange={validateName}
+          />
+        </Box>
+        <Box marginTop={2} className={classes.label} autoComplete="off">
+          <TextField
+            id="outlined-basic-4"
+            fullWidth
+            label="New Email"
+            variant="outlined"
+            value={email}
+            onChange={validateEmail}
+          />
+        </Box>
+        <div style={{ display: 'flex' }}>
+          <Box
+            marginTop={2}
+            marginRight={1}
+            className={classes.label}
+            autoComplete="off"
+          >
+            <TextField
+              type="password"
+              id="outlined-basic-5"
+              label="New Password"
+              variant="outlined"
+              value={password}
+              onChange={validatePassword}
+            />
+          </Box>
+          <Box marginTop={2} className={classes.label} autoComplete="off">
+            <TextField
+              type="password"
+              id="outlined-basic-6"
+              label="Confirm Password"
+              variant="outlined"
+              value={confirmPassword}
+              onChange={validateConfirmPassword}
+            />
+          </Box>
+        </div>
+        <Box align="center" paddingTop={2}>
+          <Button
+            type="submit"
+            style={{
+              background: 'rgb(34,193,195)',
+              background:
+                'linear-gradient(90deg, rgba(34,193,195,1) 0%, rgba(255,174,0,1) 100%)',
+              borderRadius: '50px',
+            }}
+            variant="contained"
+            size="large"
+            fullWidth
+            disabled={!nameStatus && !emailStatus && !passwordStatus}
+          >
+            Update
+          </Button>
+        </Box>
+      </form>
+    </>
+  );
+};
+
+export default UpdateAccount;
