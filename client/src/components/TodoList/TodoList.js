@@ -19,17 +19,21 @@ const TodoList = () => {
   const [todos, setTodos] = useState([]);
   const [events, setEvents] = useState([]);
   const [completedItems, setCompletedItems] = useState('');
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-    }, 500);
+    timeOut(500);
     fetchTodos();
     fetchEvents();
     fetchCompletedItems();
   }, []);
+
+  const timeOut = (time) => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 500);
+  };
 
   const fetchTodos = () => {
     db.collection(`users/${currentUser.uid}/todos`)

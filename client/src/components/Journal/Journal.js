@@ -11,22 +11,27 @@ const getURI = 'https://myday-query.vercel.app/posts/';
 const Journal = () => {
   const { currentUser } = useAuth();
   const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    timeOut(500);
     fetchPosts();
   }, []);
 
-  const fetchPosts = () => {
+  const timeOut = (time) => {
     setLoading(true);
     setTimeout(async () => {
-      const res = await axios.get(getURI + `${currentUser.uid}`);
-      setPosts(res.data.reverse());
       setLoading(false);
-    }, 700);
+    }, time);
+  };
+
+  const fetchPosts = async () => {
+    const res = await axios.get(getURI + `${currentUser.uid}`);
+    setPosts(res.data.reverse());
   };
 
   const addPost = async (title, body, time) => {
+    timeOut(1000);
     await axios.post(postURI, {
       uid: `${currentUser.uid}`,
       postId: Math.floor(Math.random() * 10000) + 1,
@@ -41,6 +46,7 @@ const Journal = () => {
   };
 
   const editPost = async (postId, editedTitle, editedBody, editTime) => {
+    timeOut(500);
     await axios.put(postURI + `${currentUser.uid}/${postId}`, {
       title: editedTitle,
       body: editedBody,
@@ -50,6 +56,7 @@ const Journal = () => {
   };
 
   const deletePost = async (postId) => {
+    timeOut(500);
     await axios.delete(postURI + `${currentUser.uid}/${postId}`);
     fetchPosts();
   };
