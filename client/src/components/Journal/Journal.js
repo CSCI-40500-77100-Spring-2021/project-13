@@ -23,7 +23,7 @@ const Journal = () => {
       const res = await axios.get(getURI + `${currentUser.uid}`);
       setPosts(res.data.reverse());
       setLoading(false);
-    }, 500);
+    }, 700);
   };
 
   const addPost = async (title, body, time) => {
