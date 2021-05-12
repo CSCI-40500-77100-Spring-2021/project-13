@@ -120,7 +120,7 @@ const Posts = ({ posts, onAddPost, onEditPost, onDeletePost }) => {
       <div>
         {posts.map((post) => {
           return (
-            <React.Fragment key={post._id}>
+            <React.Fragment key={post.postId}>
               <Post
                 post={post}
                 onEditPost={onEditPost}

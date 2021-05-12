@@ -1,27 +1,35 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { CircularProgress } from '@material-ui/core';
 
 import Posts from './Post/Posts';
 import { useAuth } from '../../AuthContext';
 
-const URI = 'https://myday-posts.vercel.app/posts/';
+const postURI = 'https://myday-posts.vercel.app/posts/';
+const getURI = 'https://myday-query.vercel.app/posts/';
 
 const Journal = () => {
   const { currentUser } = useAuth();
   const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetchPosts();
   }, []);
 
   const fetchPosts = async () => {
-    const res = await axios.get(URI + `${currentUser.uid}`);
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 500);
+    const res = await axios.get(getURI + `${currentUser.uid}`);
     setPosts(res.data.reverse());
   };
 
   const addPost = async (title, body, time) => {
-    await axios.post(URI, {
+    await axios.post(postURI, {
       uid: `${currentUser.uid}`,
+      postId: posts.length + 1,
       userName: `${currentUser.displayName}`,
       userEmail: `${currentUser.email}`,
       title,
@@ -33,7 +41,7 @@ const Journal = () => {
   };
 
   const editPost = async (postId, editedTitle, editedBody, editTime) => {
-    await axios.put(URI + `${currentUser.uid}/${postId}`, {
+    await axios.put(postURI + `${currentUser.uid}/${postId}`, {
       title: editedTitle,
       body: editedBody,
       modifiedAt: editTime,
@@ -42,9 +50,24 @@ const Journal = () => {
   };
 
   const deletePost = async (postId) => {
-    await axios.delete(URI + `${currentUser.uid}/${postId}`);
+    await axios.delete(postURI + `${currentUser.uid}/${postId}`);
     fetchPosts();
   };
+
+  if (loading) {
+    return (
+      <div
+        style={{
+          position: 'absolute',
+          left: '50%',
+          top: '50%',
+          transform: 'translate(-50%, -50%)',
+        }}
+      >
+        <CircularProgress style={{ color: '#fff' }} />
+      </div>
+    );
+  }
 
   return (
     <div className="card-container">

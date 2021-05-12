@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useHistory, Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { Container, Tabs, Tab, Button, Typography } from '@material-ui/core';
 
 import Day from './Day/Day';
@@ -29,14 +29,7 @@ const Dashboard = () => {
   return (
     <Container maxWidth="md">
       <header className="header">
-        <Typography variant="h5" style={{ cursor: 'pointer' }}>
-          <Link
-            to="/dashboard"
-            style={{ textDecoration: 'none', color: '#000' }}
-          >
-            myDay
-          </Link>
-        </Typography>
+        <Typography variant="h5">myDay</Typography>
         <Button
           style={{ borderRadius: '50px', backgroundColor: '#F88379' }}
           variant="contained"

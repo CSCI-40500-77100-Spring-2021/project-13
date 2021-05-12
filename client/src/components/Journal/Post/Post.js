@@ -50,7 +50,7 @@ const Post = ({ post, onEditPost, onDeletePost }) => {
   };
 
   const handleSave = () => {
-    onEditPost(post._id, titleInput, bodyInput, new Date());
+    onEditPost(post.postId, titleInput, bodyInput, new Date());
     setOpen(false);
   };
 
@@ -126,7 +126,7 @@ const Post = ({ post, onEditPost, onDeletePost }) => {
         onClick={() => setShowPost(!showPost)}
       >
         <p style={{ lineHeight: '0.5' }}>{post.title}</p>
-        <div>{!showPost ? <KeyboardArrowDown /> : <KeyboardArrowUp />}</div>
+        {!showPost ? <KeyboardArrowDown /> : <KeyboardArrowUp />}
       </div>
 
       {showPost && (
@@ -152,13 +152,13 @@ const Post = ({ post, onEditPost, onDeletePost }) => {
               padding: '5px 1rem',
               fontWeight: 'bolder',
               lineHeight: '1.7',
-              textAlign: 'justify',
+              letterSpacing: '1px',
             }}
           >
             {post.body}
           </p>
           <hr />
-          <div style={{ textAlign: 'center', paddingBottom: '5px' }}>
+          <div style={{ textAlign: 'center', padding: '5px 0 10px 0' }}>
             <Button
               variant="contained"
               size="small"
@@ -179,7 +179,7 @@ const Post = ({ post, onEditPost, onDeletePost }) => {
               style={{
                 borderRadius: '50px',
               }}
-              onClick={() => onDeletePost(post._id)}
+              onClick={() => onDeletePost(post.postId)}
             >
               Delete
             </Button>

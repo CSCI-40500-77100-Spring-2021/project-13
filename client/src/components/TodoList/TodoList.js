@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Tabs, Tab } from '@material-ui/core';
+import { Tabs, Tab, CircularProgress } from '@material-ui/core';
 
 import Todos from './Todo/Todos';
 import Events from './Event/Events';
@@ -19,15 +19,16 @@ const TodoList = () => {
   const [todos, setTodos] = useState([]);
   const [events, setEvents] = useState([]);
   const [completedItems, setCompletedItems] = useState('');
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    let isMounted = true;
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 500);
     fetchTodos();
     fetchEvents();
     fetchCompletedItems();
-    return () => {
-      isMounted = false;
-    };
   }, []);
 
   const fetchTodos = () => {
@@ -113,6 +114,21 @@ const TodoList = () => {
         .doc(item.id)
         .delete();
   };
+
+  if (loading) {
+    return (
+      <div
+        style={{
+          position: 'absolute',
+          left: '50%',
+          top: '50%',
+          transform: 'translate(-50%, -50%)',
+        }}
+      >
+        <CircularProgress style={{ color: '#fff' }} />
+      </div>
+    );
+  }
 
   return (
     <div className="card-container" style={{ userSelect: 'none' }}>
