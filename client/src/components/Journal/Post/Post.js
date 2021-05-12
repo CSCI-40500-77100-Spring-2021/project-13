@@ -150,7 +150,6 @@ const Post = ({ post, onEditPost, onDeletePost }) => {
           <p
             style={{
               padding: '5px 1rem',
-              fontWeight: 'bolder',
               lineHeight: '1.7',
               letterSpacing: '1px',
             }}

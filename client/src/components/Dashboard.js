@@ -45,6 +45,7 @@ const Dashboard = () => {
           background: 'rgb(34,193,195)',
           borderRadius: '50px',
           margin: '20px auto',
+          maxWidth: '45rem',
         }}
         value={value}
         onChange={toggle}
