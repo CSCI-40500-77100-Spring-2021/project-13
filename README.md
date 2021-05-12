@@ -31,7 +31,7 @@ To run this docker image on your terminal, please do the following:
 
 4. Technologies:
 
-   - Database: Firestore
+   - Database: Firestore & MongoDB
    - Authentication: Firebase > Email
    - Backend: NodeJS, Express
    - Frontend: ReactJS
