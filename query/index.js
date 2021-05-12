@@ -6,7 +6,7 @@ require('dotenv').config();
 
 // App + PORT + Database URL
 const app = express();
-const PORT = process.env.PORT || 4001;
+const PORT = process.env.PORT || 4002;
 const CONNECTION_URI = process.env.MONGODB_URI || process.env.DB_URI;
 
 app.use(cors());
@@ -24,7 +24,7 @@ mongoose.connect(
     useUnifiedTopology: true,
     useFindAndModify: false,
   },
-  () => console.log('Posts DB connection successful!')
+  () => console.log('Query DB connection successful!')
 );
 
 // Listen to the server

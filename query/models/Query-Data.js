@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const postSchema = mongoose.Schema(
+const querySchema = mongoose.Schema(
   {
     uid: { type: String, default: '' },
     postId: { type: Number, default: 0 },
@@ -16,4 +16,4 @@ const postSchema = mongoose.Schema(
   }
 );
 
-module.exports = mongoose.model('post', postSchema);
+module.exports = mongoose.model('querie', querySchema);
