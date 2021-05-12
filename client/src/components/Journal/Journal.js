@@ -31,7 +31,7 @@ const Journal = () => {
   };
 
   const addPost = async (title, body, time) => {
-    timeOut(1000);
+    timeOut(2000);
     await axios.post(postURI, {
       uid: `${currentUser.uid}`,
       postId: Math.floor(Math.random() * 10000) + 1,
