@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { Box, TextField, Button } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 
 import { useStyles } from './Util';
 import { useAuth } from '../AuthContext';
+import ForgotPassword from './ForgotPassword';
 
 const SignIn = () => {
   const classes = useStyles();
@@ -27,6 +28,10 @@ const SignIn = () => {
       setEmailError('');
       setEmailStatus(true);
     }
+
+    if (event.target.value === '') {
+      setEmailError('');
+    }
   };
 
   const validatePassword = (event) => {
@@ -37,6 +42,10 @@ const SignIn = () => {
     } else {
       setPasswordError('');
       setPasswordStatus(true);
+    }
+
+    if (event.target.value === '') {
+      setPasswordError('');
     }
   };
 
@@ -121,6 +130,7 @@ const SignIn = () => {
           style={{
             background: '#22c1c3',
             borderRadius: '50px',
+            marginBottom: '5px',
           }}
           variant="contained"
           size="large"
@@ -129,6 +139,7 @@ const SignIn = () => {
         >
           Sign In
         </Button>
+        <ForgotPassword />
       </Box>
     </form>
   );

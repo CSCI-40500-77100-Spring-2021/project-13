@@ -21,7 +21,7 @@ const Post = ({ post, onEditPost, onDeletePost }) => {
   const [titleStatus, setTitleStatus] = useState(false);
   const [bodyStatus, setBodyStatus] = useState(false);
   const [showPost, setShowPost] = useState(false);
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
     setOpen(true);

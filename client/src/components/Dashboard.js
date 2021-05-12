@@ -7,6 +7,7 @@ import TodoList from './TodoList/TodoList';
 import { TabPanel, a11yProps } from './Util';
 import { useAuth } from '../AuthContext';
 import Journal from './Journal/Journal';
+import UpdateAccount from './UpdateAccount/UpdateAccount';
 
 const Dashboard = () => {
   const [value, setValue] = useState(0);
@@ -56,7 +57,7 @@ const Dashboard = () => {
         <Tab label="Today" {...a11yProps(0)} />
         <Tab label="Tasks" {...a11yProps(1)} />
         <Tab label="Journal" {...a11yProps(2)} />
-        <Tab label="Teest" {...a11yProps(3)} />
+        <Tab label="Update Account" {...a11yProps(3)} />
       </Tabs>
       <TabPanel value={value} index={0}>
         <Day />
@@ -66,6 +67,9 @@ const Dashboard = () => {
       </TabPanel>
       <TabPanel value={value} index={2}>
         <Journal />
+      </TabPanel>
+      <TabPanel value={value} index={3}>
+        <UpdateAccount />
       </TabPanel>
     </Container>
   );

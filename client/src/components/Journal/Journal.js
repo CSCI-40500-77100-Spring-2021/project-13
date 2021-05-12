@@ -17,19 +17,19 @@ const Journal = () => {
     fetchPosts();
   }, []);
 
-  const fetchPosts = async () => {
+  const fetchPosts = () => {
     setLoading(true);
-    setTimeout(() => {
+    setTimeout(async () => {
+      const res = await axios.get(getURI + `${currentUser.uid}`);
+      setPosts(res.data.reverse());
       setLoading(false);
     }, 500);
-    const res = await axios.get(getURI + `${currentUser.uid}`);
-    setPosts(res.data.reverse());
   };
 
   const addPost = async (title, body, time) => {
     await axios.post(postURI, {
       uid: `${currentUser.uid}`,
-      postId: posts.length + 1,
+      postId: Math.floor(Math.random() * 10000) + 1,
       userName: `${currentUser.displayName}`,
       userEmail: `${currentUser.email}`,
       title,

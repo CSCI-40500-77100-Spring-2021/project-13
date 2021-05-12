@@ -25,7 +25,7 @@ const SignUp = () => {
 
   const validateName = (event) => {
     setName(event.target.value);
-    if (!event.target.value.match(/[a-z]/i)) {
+    if (event.target.value !== '' && !event.target.value.match(/[a-z]/i)) {
       setName('');
       setNameError('Needs to start with a letter [A-Z]!');
       setNameStatus(false);
@@ -35,6 +35,10 @@ const SignUp = () => {
     } else {
       setNameError('');
       setNameStatus(true);
+    }
+
+    if (event.target.value === '') {
+      setNameError('');
     }
   };
 
@@ -46,6 +50,10 @@ const SignUp = () => {
     } else {
       setEmailError('');
       setEmailStatus(true);
+    }
+
+    if (event.target.value === '') {
+      setEmailError('');
     }
   };
 
@@ -62,6 +70,11 @@ const SignUp = () => {
       setPasswordError('');
       setConfirmPasswordError('');
       setPasswordStatus(true);
+    }
+
+    if (event.target.value === '') {
+      setPasswordError('');
+      setConfirmPasswordError('');
     }
   };
 
