@@ -14,7 +14,7 @@ const Journal = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    timeOut(500);
+    timeOut(700);
     fetchPosts();
   }, []);
 
