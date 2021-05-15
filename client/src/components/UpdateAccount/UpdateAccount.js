@@ -1,5 +1,14 @@
 import { useState } from 'react';
-import { Box, TextField, Button } from '@material-ui/core';
+import {
+  Box,
+  TextField,
+  Button,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogContentText,
+  DialogActions,
+} from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
 
 import { useAuth } from '../../AuthContext';
@@ -20,7 +29,13 @@ const UpdateAccount = () => {
   const [passwordStatus, setPasswordStatus] = useState(false);
   const [message, setMessage] = useState('');
   const [updateError, setUpdateError] = useState('');
-  const { currentUser, updateName, updateEmail, updatePassword } = useAuth();
+  const [open, setOpen] = useState(false);
+  const [code] = useState('Close myDay');
+  const [codeError, setCodeError] = useState('');
+  const [failedError, setFailedError] = useState('');
+  const [codeStatus, setCodeStatus] = useState(false);
+  const { currentUser, updateName, updateEmail, updatePassword, closeAccount } =
+    useAuth();
 
   const validateName = (event) => {
     setName(event.target.value);
@@ -92,6 +107,8 @@ const UpdateAccount = () => {
     if (password !== event.target.value) {
       setConfirmPasswordError('Passwords needs to be matched!');
       setPasswordStatus(false);
+    } else if (event.target.value === '') {
+      setPasswordStatus(false);
     } else {
       setConfirmPasswordError('');
       setPasswordStatus(true);
@@ -127,6 +144,109 @@ const UpdateAccount = () => {
         setUpdateError('Failed to update account');
       });
   };
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const validateCode = (event) => {
+    if (event.target.value !== code) {
+      setCodeError('Hmm, please enter the code properly!');
+      setCodeStatus(false);
+    } else {
+      setCodeError('');
+      setCodeStatus(true);
+    }
+  };
+
+  const handleCloseAccount = async () => {
+    try {
+      await closeAccount();
+    } catch {
+      setFailedError('Something went wrong, try again please!');
+    }
+  };
+
+  if (open) {
+    return (
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="form-dialog-title"
+        style={{ userSelect: 'none' }}
+      >
+        <DialogTitle id="form-dialog-title">Close Account</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Are you sure, you want to close your account? Please note, once you
+            click 'DELETE' we will delete your account and all the data
+            associated with it. This process cannot be undone! Hope you enjoyed
+            using myDay, thank you :)
+          </DialogContentText>
+          <DialogContentText>
+            Please type 'Close myDay' below and press 'DELETE' to confirm! If
+            you change your mind, click 'CANCEL'.
+          </DialogContentText>
+          <Box>
+            {codeError && (
+              <Alert
+                severity="warning"
+                style={{
+                  marginTop: '8px',
+                  borderRadius: '50px',
+                }}
+              >
+                {codeError}
+              </Alert>
+            )}
+
+            {failedError && (
+              <Alert
+                severity="error"
+                style={{
+                  marginTop: '8px',
+                  borderRadius: '50px',
+                }}
+              >
+                {failedError}
+              </Alert>
+            )}
+          </Box>
+          <Box
+            marginTop={2}
+            className={classes.label}
+            autoComplete="off"
+            style={{ flex: '1' }}
+          >
+            <TextField
+              id="outlined-basic"
+              fullWidth
+              required
+              label="Code"
+              variant="outlined"
+              onChange={validateCode}
+            />
+          </Box>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="primary">
+            Cancel
+          </Button>
+          <Button
+            disabled={!codeStatus}
+            onClick={handleCloseAccount}
+            color="secondary"
+          >
+            Delete
+          </Button>
+        </DialogActions>
+      </Dialog>
+    );
+  }
 
   return (
     <>
@@ -314,6 +434,20 @@ const UpdateAccount = () => {
           </Button>
         </Box>
       </form>
+
+      <Box align="center" paddingTop={2}>
+        <Button
+          style={{
+            borderRadius: '50px',
+          }}
+          color="secondary"
+          variant="contained"
+          size="small"
+          onClick={handleOpen}
+        >
+          Close Account ?
+        </Button>
+      </Box>
     </>
   );
 };

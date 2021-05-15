@@ -27,6 +27,7 @@ const ForgotPassword = () => {
   const handleOpen = () => {
     setOpen(true);
   };
+
   const handleClose = () => {
     setOpen(false);
     setEmailStatus(false);
