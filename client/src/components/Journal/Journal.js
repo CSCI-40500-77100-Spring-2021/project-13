@@ -14,7 +14,7 @@ const Journal = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    timeOut(700);
+    timeOut(1500);
     fetchPosts();
   }, []);
 
@@ -31,7 +31,7 @@ const Journal = () => {
   };
 
   const addPost = async (title, body, time) => {
-    timeOut(3500);
+    timeOut(5000);
     await axios.post(postURI, {
       uid: `${currentUser.uid}`,
       postId: Math.floor(Math.random() * 10000) + 1,
@@ -46,7 +46,7 @@ const Journal = () => {
   };
 
   const editPost = async (postId, editedTitle, editedBody, editTime) => {
-    timeOut(500);
+    timeOut(1000);
     await axios.put(postURI + `${currentUser.uid}/${postId}`, {
       title: editedTitle,
       body: editedBody,
@@ -56,7 +56,7 @@ const Journal = () => {
   };
 
   const deletePost = async (postId) => {
-    timeOut(500);
+    timeOut(1000);
     await axios.delete(postURI + `${currentUser.uid}/${postId}`);
     fetchPosts();
   };
