@@ -1,18 +1,26 @@
-import { Grid } from '@material-ui/core';
-
-import DayInfo from './DayInfo';
+import { TwitterTimelineEmbed } from 'react-twitter-embed';
 
 const Day = () => {
   return (
-    <Grid container>
-      <Grid item xs={12}>
-        <Grid container justify="center" spacing={3}>
-          <Grid item>
-            <DayInfo />
-          </Grid>
-        </Grid>
-      </Grid>
-    </Grid>
+    <div className="news">
+      <div className="grid-container">
+        <TwitterTimelineEmbed
+          sourceType="profile"
+          screenName="BreakingNews"
+          theme="dark"
+          options={{ height: 400, width: 300 }}
+        />
+      </div>
+
+      <div className="grid-container">
+        <TwitterTimelineEmbed
+          sourceType="profile"
+          screenName="espn"
+          theme="dark"
+          options={{ height: 400, width: 300 }}
+        />
+      </div>
+    </div>
   );
 };
 

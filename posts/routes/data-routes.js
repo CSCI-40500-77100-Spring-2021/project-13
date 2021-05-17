@@ -40,6 +40,21 @@ router.put('/posts/:uid/:pId', async (req, res) => {
   }
 });
 
+router.delete('/posts/:uid', async (req, res) => {
+  const userId = req.params.uid;
+  try {
+    const post = await postData.findOne({ uid: userId });
+    const deleted = await postData.deleteMany({ uid: userId });
+    await axios.post('https://myday-events.vercel.app/events', {
+      type: 'PostsDeleted',
+      data: post,
+    });
+    res.send(deleted);
+  } catch (err) {
+    res.json({ msg: err });
+  }
+});
+
 router.delete('/posts/:uid/:pId', async (req, res) => {
   const userId = req.params.uid;
   const postId = req.params.pId;

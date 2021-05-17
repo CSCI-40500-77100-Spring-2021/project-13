@@ -37,12 +37,19 @@ html {
   border-bottom: 1.5px solid #333;
 }
 
+.news {
+  max-width: 45rem;
+  display: flex;
+  margin: auto;
+}
+
 .grid-container {
   color: rgb(219, 219, 219);
   background: #362b2b;
   border-radius: 15px;
-  padding: 2rem;
-  box-shadow: 7px 7px 7px #121212;
+  padding: 1.5rem;
+  margin: 1rem;
+  box-shadow: 5px 5px 5px #121212;
 }
 
 .items {
@@ -68,4 +75,10 @@ html {
   padding: 5px 20px;
   background-color: #362b2b;
   border-radius: 10px;
+}
+
+@media (max-width: 800px) {
+  .news {
+    flex-direction: column;
+  }
 }

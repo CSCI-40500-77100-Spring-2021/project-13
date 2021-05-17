@@ -49,15 +49,35 @@ export const AuthProvider = ({ children }) => {
     return auth.currentUser.delete();
   };
 
+  const autoSignOut = (user, mins) => {
+    let userSessionTimeout = null;
+
+    if (user === null && userSessionTimeout) {
+      clearTimeout(userSessionTimeout);
+      userSessionTimeout = null;
+    } else {
+      user.getIdTokenResult().then((idTokenResult) => {
+        const authTime = idTokenResult.claims.auth_time * 1000;
+        const sessionDurationInMilliseconds = 60 * mins * 1000;
+        const expirationInMilliseconds =
+          sessionDurationInMilliseconds - (Date.now() - authTime);
+        userSessionTimeout = setTimeout(
+          () => auth.signOut(),
+          expirationInMilliseconds
+        );
+      });
+    }
+  };
+
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
+    auth.onAuthStateChanged((user) => {
       setCurrentUser(user);
       setTimeout(() => {
         setLoading(false);
       }, 500);
-    });
 
-    return unsubscribe;
+      autoSignOut(user, 30);
+    });
   }, []);
 
   const value = {

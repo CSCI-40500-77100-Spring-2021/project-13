@@ -52,6 +52,13 @@ router.post('/query/events', async (req, res) => {
     });
     res.send(post);
   }
+
+  if (type === 'PostsDeleted') {
+    const post = await queryData.deleteMany({
+      uid: data.uid,
+    });
+    res.send(post);
+  }
 });
 
 module.exports = router;

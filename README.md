@@ -1,5 +1,7 @@
 # Project-13 (myDay)
 
+## Live Demo Link : https://myday-demo.vercel.app/ (Sign In Required!)
+
 ## Docker
 
 To run this docker image on your terminal, please do the following:
@@ -39,8 +41,6 @@ To run this docker image on your terminal, please do the following:
 ## Idea:
 
 The idea behind this app is to give the user full power to control their productivity dashboard. The user can add To-Dos, Events, have a personal journal to write down thier amazing ideas or thoughts, stay updated with the important current events etc.
-
-## Prototype Live Link : https://myday-prototype.vercel.app/
 
 ## Steps:
 

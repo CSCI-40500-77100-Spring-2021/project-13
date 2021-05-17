@@ -10,9 +10,13 @@ import {
   DialogActions,
 } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
+import axios from 'axios';
 
 import { useAuth } from '../../AuthContext';
 import { useStyles } from '../Util';
+import { auth, db } from '../../firebase';
+
+const URI = 'https://myday-posts.vercel.app/posts/';
 
 const UpdateAccount = () => {
   const classes = useStyles();
@@ -164,10 +168,14 @@ const UpdateAccount = () => {
   };
 
   const handleCloseAccount = async () => {
+    setCodeStatus(false);
     try {
+      await axios.delete(URI + `${currentUser.uid}`);
       await closeAccount();
     } catch {
-      setFailedError('Something went wrong, try again please!');
+      setFailedError(
+        'Something went wrong, please sign out, then sign back in and try again!'
+      );
     }
   };
 
